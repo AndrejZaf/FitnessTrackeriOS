@@ -22,6 +22,8 @@ class LoginViewModel: ObservableObject {
                     DispatchQueue.main.async {
                         self.isAuthenticated = true;
                     }
+                    ExerciseService().getExercises(token: tokens["accessToken"]!!);
+                    WorkoutService().getWorkouts(token: tokens["accessToken"]!!);
                 case .failure(let error):
                     print(error);
             }

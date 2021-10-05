@@ -10,14 +10,19 @@ import SwiftUI
 struct ContentView: View {
     let defaults = UserDefaults.standard;
     @AppStorage("loggedIn") var loggedIn: Bool = false;
+    
     var body: some View {
-        // defaults.value(forKey: "tokens") == nil
-        if !loggedIn {
-            LoginView();
-        }
-        else {
-            MainView();
-        }
+        VStack {
+            // defaults.value(forKey: "tokens") == nil
+            if !loggedIn {
+                LoginView();
+            }
+            else {
+                MainView();
+            }
+        }.onAppear(perform: {
+            Repository.shared;
+        })
     }
 }
 

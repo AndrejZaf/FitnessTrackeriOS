@@ -13,11 +13,11 @@ struct MainView: View {
             HomeView()
                 .tabItem { Image(systemName: "house") }
             ExercisesView()
-                .tabItem { Image(systemName: "square") }
+                .tabItem { Image(systemName: "figure.walk") }
             WorkoutView()
-                .tabItem { Image(systemName: "square") }
+                .tabItem { Image(systemName: "heart.text.square") }
             ProfileView()
-                .tabItem { Image(systemName: "square") }
+                .tabItem { Image(systemName: "person") }
         }
     }
 }

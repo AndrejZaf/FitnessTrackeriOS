@@ -10,6 +10,8 @@ struct ApiConstants {
     static let apiUserEndpoint = "http://localhost:8080/api/user/";
 
     static let loginEndpoint = "login";
+    
+    static let exercisesEndpoint = "exercise"
 
     static let forgotPassword = "reset-password";
     
