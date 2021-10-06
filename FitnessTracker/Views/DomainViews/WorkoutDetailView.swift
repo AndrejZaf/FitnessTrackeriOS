@@ -9,38 +9,17 @@ import SwiftUI
 
 struct WorkoutDetailView: View {
     @State private var editMode: Bool = false;
-    var workout: WorkoutEntity;
+    @State var workout: WorkoutEntity;
+    @Environment(\.presentationMode) var presentationMode;
     var body: some View {
         VStack {
-            WorkoutExercisesView(exercises: workout.exercises)
+            WorkoutExercisesView(exercises: $workout.exercises, editMode: $editMode)
                 .navigationBarTitle(Text(workout.name), displayMode: .inline)
                 .toolbar {
-                    if editMode {
-                        Button(action: {
-                            editMode.toggle();
-                        }, label: {
-                            Image(systemName: "checkmark");
-                        })
-                    } else {
-                        Button(action: {
-                            editMode.toggle();
-                        }, label: {
-                            Image(systemName: "slider.horizontal.3");
-                        })
-                    }
-                    
+                    NavigationLink(destination: CreateEditWorkoutView(selectedExercises: workout.exercises, workoutName: workout.name,workoutUid: workout.uid, editMode: true), label: {
+                        Image(systemName: "slider.horizontal.3");
+                    });
                 }
-            if editMode {
-                HStack {
-                    Spacer();
-                    Button("\(Image(systemName: "plus.circle"))", action: {
-                        
-                    })
-                        .font(.title)
-                    Spacer();
-                }
-                .padding(.vertical)
-            }
         }
     }
 }

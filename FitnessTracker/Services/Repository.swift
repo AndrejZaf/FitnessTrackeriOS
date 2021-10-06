@@ -96,7 +96,7 @@ class Repository {
         if sqlite3_prepare_v2(db, query, -1, &statement, nil) == SQLITE_OK {
             for exercise in exercises {
                 sqlite3_bind_text(statement, 1, (exercise.uid! as NSString).utf8String, -1, nil);
-                print(exercise.uid!);
+//                print(exercise.uid!);
                 sqlite3_bind_text(statement, 2, (exercise.category! as NSString).utf8String, -1, nil);
                 if exercise.exerciseDescription != nil {
                     sqlite3_bind_text(statement, 3, (exercise.exerciseDescription! as NSString).utf8String, -1, nil);
@@ -256,36 +256,6 @@ class Repository {
                 let model = ExerciseEntity(id: id, uid: uid, category: category, description: description, equipment: equipment, forceType: forceType, level: level, mechanic: mechanic, name: name, primaryMuscle: primaryMuscles);
                 list.append(model);
                 if counter == numberOfExercises {
-                    break;
-                }
-            }
-        }
-        return list;
-    }
-    
-    func getWorkouts(_ numberOfWorkouts: Int) -> [ExerciseEntity] {
-        var list = [ExerciseEntity]();
-        var counter = 0;
-        let query = "SELECT * FROM workout LIMIT \(numberOfWorkouts);";
-        var statement: OpaquePointer? = nil;
-        
-        if sqlite3_prepare(db, query, -1, &statement, nil) == SQLITE_OK {
-            while sqlite3_step(statement) == SQLITE_ROW {
-                counter = counter + 1;
-                let id = Int(sqlite3_column_int(statement, 0));
-                let uid = String(describing: String(cString: sqlite3_column_text(statement, 1)));
-                let category = String(describing: String(cString: sqlite3_column_text(statement, 2)));
-                let description = String(describing: String(cString: sqlite3_column_text(statement, 3)));
-                let equipment = String(describing: String(cString: sqlite3_column_text(statement, 4)));
-                let forceType = String(describing: String(cString: sqlite3_column_text(statement, 5)));
-                let level = String(describing: String(cString: sqlite3_column_text(statement, 6)));
-                let mechanic = String(describing: String(cString: sqlite3_column_text(statement, 7)));
-                let name = String(describing: String(cString: sqlite3_column_text(statement, 8)));
-                let primaryMuscles = String(describing: String(cString: sqlite3_column_text(statement, 9)));
-                
-                let model = ExerciseEntity(id: id, uid: uid, category: category, description: description, equipment: equipment, forceType: forceType, level: level, mechanic: mechanic, name: name, primaryMuscle: primaryMuscles);
-                list.append(model);
-                if counter == numberOfWorkouts {
                     break;
                 }
             }
@@ -542,5 +512,243 @@ class Repository {
             
         }
         return "";
+    }
+    
+    func getWorkoutIdByUid(uid: String) -> Int {
+        let query = """
+        SELECT id FROM workout WHERE uid=
+        """;
+        
+        var statement: OpaquePointer? = nil;
+        if sqlite3_prepare_v2(db, "\(query)'\(uid)'", -1, &statement, nil) == SQLITE_OK {
+            if sqlite3_step(statement) == SQLITE_ROW {
+                let id = Int(sqlite3_column_int(statement, 0));
+                sqlite3_reset(statement);
+                return id;
+            }
+            
+        }
+        return -1;
+    }
+    
+    func searchForWorkouts(workoutName: String) -> [WorkoutEntity] {
+        var workouts = [WorkoutEntity]();
+        var counter = 0;
+        let query = "SELECT * FROM workout WHERE name LIKE ('%\(workoutName)%');";
+        let workoutExerciseQuery = "SELECT * FROM workout_exercise WHERE workout_id=";
+        let exerciseSetQuery = "SELECT * FROM exercise_set WHERE workout_exercise_id=";
+        let exerciseQuery = "SELECT name FROM exercise WHERE id=";
+        var statement: OpaquePointer? = nil;
+        var secondInnerStatement: OpaquePointer? = nil;
+        var thirdInnerStatement: OpaquePointer? = nil;
+        var fourthInnerStatement: OpaquePointer? = nil;
+        
+        if sqlite3_prepare(db, query, -1, &statement, nil) == SQLITE_OK {
+            while sqlite3_step(statement) == SQLITE_ROW {
+                let workoutId = Int(sqlite3_column_int(statement, 0));
+                let workoutUid = String(describing: String(cString: sqlite3_column_text(statement, 1)));
+                let workoutName = String(describing: String(cString: sqlite3_column_text(statement, 2)));
+                
+                var workoutExercises = [WorkoutExerciseEntity]();
+                if sqlite3_prepare(db, "\(workoutExerciseQuery)'\(workoutId)'", -1, &secondInnerStatement, nil) == SQLITE_OK {
+                    while sqlite3_step(secondInnerStatement) == SQLITE_ROW {
+                        let workoutExerciseId = Int(sqlite3_column_int(secondInnerStatement, 0));
+                        let workoutExercise_exercise_id = Int(sqlite3_column_int(secondInnerStatement, 1));
+                        let workoutExercise_workout_id = Int(sqlite3_column_int(secondInnerStatement, 2));
+                        
+                        var exerciseName: String = "";
+                        if sqlite3_prepare(db, "\(exerciseQuery)'\(workoutExercise_exercise_id)'", -1, &fourthInnerStatement, nil) == SQLITE_OK {
+                            if sqlite3_step(fourthInnerStatement) == SQLITE_ROW {
+                                let name = String(describing: String(cString: sqlite3_column_text(fourthInnerStatement, 0)));
+                                exerciseName = name;
+                            }
+                            sqlite3_reset(fourthInnerStatement);
+                        }
+                        
+                        
+                        var exerciseSets = [SetEntity]();
+                        if sqlite3_prepare(db, "\(exerciseSetQuery)'\(workoutExerciseId)'", -1, &thirdInnerStatement, nil) == SQLITE_OK {
+                            while sqlite3_step(thirdInnerStatement) == SQLITE_ROW {
+                                let id = Int(sqlite3_column_int(thirdInnerStatement, 0));
+                                let reps = Int(sqlite3_column_int(thirdInnerStatement, 1));
+                                let restPeriod = Int(sqlite3_column_int(thirdInnerStatement, 2));
+                                let weight = Int(sqlite3_column_int(thirdInnerStatement, 3));
+                                
+                                let setModel = SetEntity(id: id, reps: reps, weight: weight, rest_period: restPeriod, workout_exercise_id: workoutExerciseId);
+                                exerciseSets.append(setModel);
+                            }
+                            sqlite3_reset(thirdInnerStatement);
+                        }
+                        
+                        
+                        let workoutExerciseModel = WorkoutExerciseEntity(id: workoutExerciseId, name: exerciseName, exercise_id: workoutExercise_exercise_id, workout_id: workoutExercise_workout_id, exerciseSets: exerciseSets)
+                        
+                        
+                        workoutExercises.append(workoutExerciseModel);
+                    }
+                    sqlite3_reset(secondInnerStatement);
+                }
+                
+                
+                let workoutModel = WorkoutEntity(id: workoutId, uid: workoutUid, name: workoutName, exercises: workoutExercises);
+                workouts.append(workoutModel);
+            }
+            sqlite3_reset(statement);
+        }
+        return workouts;
+    }
+    
+    func updateWorkout(workout: WorkoutEntity) -> Void {
+        let query = """
+            INSERT OR IGNORE INTO workout
+            (uid, name)
+            VALUES (?, ?);
+        """;
+        
+        let workoutId = getWorkoutIdByUid(uid: workout.uid);
+        let getWorkoutExerciseIDs = "SELECT id FROM workout_exercise WHERE workout_id=\(workoutId)";
+        
+        var statement: OpaquePointer? = nil;
+        
+        var list = [Int]();
+        
+        if sqlite3_prepare(db, getWorkoutExerciseIDs, -1, &statement, nil) == SQLITE_OK {
+            while sqlite3_step(statement) == SQLITE_ROW {
+                let id = Int(sqlite3_column_int(statement, 0));
+                list.append(id);
+            }
+        }
+        statement = nil;
+        
+        for element in list {
+            // CONTINUE HERE
+            let deleteWorkoutSets = "DELETE FROM exercise_set WHERE workout_exercise_id='\(element)'";
+            if sqlite3_prepare_v2(db, deleteWorkoutSets, -1, &statement, nil) == SQLITE_OK {
+                if sqlite3_step(statement) == SQLITE_DONE {
+                    print("Delete data success");
+                }
+            } else {
+                print("Prepartion fail");
+            }
+        }
+        
+        
+        statement = nil;
+        
+        let deleteWorkoutExerciseQuery = "DELETE FROM workout_exercise WHERE workout_id='\(workoutId)'";
+        
+        let exerciseQuery = "SELECT id FROM exercise WHERE uid=";
+
+        let workoutQuery = "SELECT id FROM workout WHERE uid=";
+
+        let insertQuery = """
+            INSERT INTO workout_exercise
+            (exercise_id, workout_id)
+            VALUES (?, ?);
+            """
+
+        let insertSetQuery = """
+            INSERT INTO exercise_set
+            (reps, rest_period, weight, workout_exercise_id)
+            VALUES (?, ?, ?, ?);
+            """;
+        statement = nil;
+        if sqlite3_prepare_v2(db, deleteWorkoutExerciseQuery, -1, &statement, nil) == SQLITE_OK {
+            if sqlite3_step(statement) == SQLITE_DONE {
+                print("Delete data success");
+            }
+        } else {
+            print("Prepartion fail");
+        }
+        
+        statement = nil;
+
+//        var emptyWorkout: Bool = false;
+        sqlite3_exec(db, "BEGIN TRANSACTION", nil, nil, nil);
+        if sqlite3_prepare_v2(db, "UPDATE workout SET name='\(workout.name)' WHERE uid='\(workout.uid)'", -1, &statement, nil) == SQLITE_OK {
+            if sqlite3_step(statement) == SQLITE_DONE {
+                print("Data inserted");
+            } else {
+                print("Data is not inserted");
+            }
+            sqlite3_reset(statement);
+            sqlite3_exec(db, "COMMIT TRANSACTION", nil, nil, nil);
+            sqlite3_finalize(statement);
+        } else {
+            print("Query is not as per requirement");
+        }
+        
+        statement = nil;
+        sqlite3_exec(db, "BEGIN TRANSACTION", nil, nil, nil);
+        if sqlite3_prepare_v2(db, insertQuery, -1, &statement, nil) == SQLITE_OK {
+            if workout.exercises.count == 0 {
+
+            } else {
+                for exercise in workout.exercises {
+                    var exerciseId = exercise.exercise_id;
+                    var workoutId = workoutId;
+                    if sqlite3_prepare_v2(db, insertQuery, -1, &statement, nil) == SQLITE_OK {
+                        sqlite3_bind_int(statement, 1, Int32(exerciseId));
+                        sqlite3_bind_int(statement, 2, Int32(workoutId));
+
+                        if sqlite3_step(statement) == SQLITE_DONE {
+                            print("Data inserted");
+                        } else {
+                            print("Data is not inserted");
+                        }
+                        sqlite3_reset(statement);
+                    }
+                }
+            }
+
+            sqlite3_exec(db, "COMMIT TRANSACTION", nil, nil, nil);
+            sqlite3_finalize(statement);
+        }
+        else {
+            print("Query is not as per requirement");
+        }
+
+
+        statement = nil;
+        sqlite3_exec(db, "BEGIN TRANSACTION", nil, nil, nil);
+        if sqlite3_prepare_v2(db, insertSetQuery, -1, &statement, nil) == SQLITE_OK {
+                for exercise in workout.exercises {
+                    var exerciseId = exercise.exercise_id;
+                    var workoutId = workoutId;
+                    var workoutExerciseId = -1;
+
+                    if sqlite3_prepare_v2(db, "SELECT id FROM workout_exercise WHERE exercise_id=\(exerciseId) AND workout_id=\(workoutId)", -1, &statement, nil) == SQLITE_OK {
+                        if sqlite3_step(statement) == SQLITE_ROW {
+                            workoutExerciseId = Int(sqlite3_column_int(statement, 0));
+                            sqlite3_reset(statement);
+                        }
+                    }
+
+
+                    for set in exercise.exerciseSets {
+                        // (reps, rest_period, weight, workout_exercise_id)
+                        if sqlite3_prepare_v2(db, insertSetQuery, -1, &statement, nil) == SQLITE_OK {
+                            sqlite3_bind_int(statement, 1, Int32(set.reps));
+                            sqlite3_bind_int(statement, 2, Int32(set.rest_period));
+                            sqlite3_bind_int(statement, 3, Int32(set.weight));
+                            sqlite3_bind_int(statement, 4, Int32(workoutExerciseId));
+
+                            if sqlite3_step(statement) == SQLITE_DONE {
+                                print("Data inserted");
+                            } else {
+                                print("Data is not inserted");
+                            }
+                            sqlite3_reset(statement);
+                        }
+                    }
+
+            }
+            sqlite3_exec(db, "COMMIT TRANSACTION", nil, nil, nil);
+            sqlite3_finalize(statement);
+        }
+        else {
+            print("Query is not as per requirement");
+        }
+        
     }
 }

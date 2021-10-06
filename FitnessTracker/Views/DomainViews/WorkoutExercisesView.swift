@@ -8,20 +8,22 @@
 import SwiftUI
 
 struct WorkoutExercisesView: View {
-    var exercises: [WorkoutExerciseEntity];
+    @Binding var exercises: [WorkoutExerciseEntity];
     @State private var showSheet = false;
+    @Binding var editMode: Bool;
     var body: some View {
         List {
-            ForEach(0..<exercises.count) { index in
+            ForEach(0..<exercises.indices.count, id: \.self) { index in
                 NavigationLink(
                     destination:
-                        BasicExerciseSetsView(exerciseSets: exercises[index].exerciseSets, exerciseName: exercises[index].name),
+                        BasicExerciseSetsView(exerciseSets: $exercises[index].exerciseSets, editMode: $editMode ,exerciseName: exercises[index].name),
                     label: {
-                            WorkoutExerciseRowView(workoutExercise: exercises[index]);
+                        WorkoutExerciseRowView(workoutExercise: exercises[index]);
                     })
-            }.onDelete(perform: { indexSet in
-                print(indexSet);
-            })
+            }
+            .onDelete(perform: { indexSet in
+                exercises.remove(at: indexSet.first!);
+            }).deleteDisabled(!editMode)
         }
     }
 }

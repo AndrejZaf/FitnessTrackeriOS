@@ -18,4 +18,7 @@ class WorkoutViewModel: ObservableObject {
         listOfWorkouts = Repository.shared.getWorkouts();
     }
     
+    func search(search: String) -> Void {
+        listOfWorkouts = Repository.shared.searchForWorkouts(workoutName: search);
+    }
 }

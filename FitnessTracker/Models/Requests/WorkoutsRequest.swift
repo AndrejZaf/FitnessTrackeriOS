@@ -8,20 +8,20 @@
 import Foundation
 
 struct WorkoutRequest: Codable {
-    let name: String?;
-    let uid: String?;
-    let exercises: [WorkoutExercise]?;
+    var name: String?;
+    var uid: String?;
+    var exercises: [WorkoutExercise]?;
 }
  
 // MARK: - Exercise
 struct WorkoutExercise: Codable {
-    let uid: String?;
-    let sets: [Set]?;
+    var uid: String?;
+    var sets: [Set]?;
 }
  
 // MARK: - Set
 struct Set: Codable {
-    let reps, weight, restPeriod: Int?;
+    var reps, weight, restPeriod: Int?;
 }
  
 typealias WorkoutRequests = [WorkoutRequest];

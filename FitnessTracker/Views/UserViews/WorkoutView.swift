@@ -15,7 +15,10 @@ struct WorkoutView: View {
             VStack{
                 TextField("Search for a workout", text: $searchState)
                 .textFieldStyle(CustomTextFieldStyle())
-                    .padding(.horizontal);
+                    .padding(.horizontal)
+                    .onChange(of: searchState, perform: { value in
+                        workoutViewModel.search(search: searchState)
+                    });
                 
                 VerticalWorkoutView(workouts: workoutViewModel.listOfWorkouts);
                 Divider();
@@ -32,6 +35,12 @@ struct WorkoutView: View {
                 .padding(.vertical)
                 Spacer();
             }
+            .onAppear(perform: {
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    // Put your code which should be executed with a delay here
+                    workoutViewModel.loadInitalList();
+//                }
+            })
             .padding(.top)
             .navigationBarHidden(true);
         }.navigationViewStyle(StackNavigationViewStyle());

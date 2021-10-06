@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct BasicExerciseSetsView: View {
-    @State var exerciseSets: [SetEntity];
+    @Binding var exerciseSets: [SetEntity];
+    @Binding var editMode: Bool;
     @State private var isSheetShown = false;
     var exerciseName: String;
     var setType: SetType = SetType.View;
@@ -18,9 +19,16 @@ struct BasicExerciseSetsView: View {
         VStack {
             ScrollView{
                 ForEach(0..<exerciseSets.count, id: \.self) { index in
-                    ExerciseSetRowView(exerciseSet: exerciseSets[index], exerciseSets: $exerciseSets, indexSet: index, setType: SetType.Add).onTapGesture(perform: {
-                        isSheetShown.toggle();
-                    })
+                    if editMode {
+                        ExerciseSetRowView(exerciseSet: exerciseSets[index], exerciseSets: $exerciseSets, indexSet: index, setType: SetType.Add).onTapGesture(perform: {
+                            isSheetShown.toggle();
+                        })
+                    } else {
+                        ExerciseSetRowView(exerciseSet: exerciseSets[index], exerciseSets: $exerciseSets, indexSet: index, setType: SetType.View).onTapGesture(perform: {
+                            isSheetShown.toggle();
+                        })
+                    }
+                    
                 }
             }
         }.bottomSheet(isPresented: $isSheetShown, height: 400, content: {

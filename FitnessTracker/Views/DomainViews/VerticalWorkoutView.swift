@@ -11,7 +11,7 @@ struct VerticalWorkoutView: View {
     var workouts: [WorkoutEntity];
     var body: some View {
         ScrollView{
-            ForEach(0..<workouts.count) { index in
+            ForEach(0..<workouts.indices.count, id: \.self) { index in
                 NavigationLink(
                     destination: WorkoutDetailView(workout: workouts[index]),
                     label: {

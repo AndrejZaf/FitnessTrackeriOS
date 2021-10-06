@@ -11,7 +11,9 @@ struct CreateEditWorkoutView: View {
     @State var selectedExercises = [WorkoutExerciseEntity]();
     @State var workoutName: String = "";
     @State var listSelection: String = "";
-    
+    @State var workoutUid: String = "";
+    @Environment(\.presentationMode) var presentationMode;
+    var editMode: Bool = false;
     var body: some View {
         VStack {
             Form {
@@ -44,18 +46,30 @@ struct CreateEditWorkoutView: View {
             
             Spacer();
             
+            if !editMode {
             Button(action: {
-                var workoutEntity = WorkoutEntity(id: -1, uid: "", name: workoutName, exercises: selectedExercises);
-                
+                let workoutEntity = WorkoutEntity(id: -1, uid: "", name: workoutName, exercises: selectedExercises);
                 // Workout gets inserted in cloud DB, but not workoutExercise and setEntity
-                
                 let defaults = UserDefaults.standard.dictionary(forKey: "tokens")!["accessToken"];
                 WorkoutService().addWorkout(token: defaults as! String, workoutEntity: workoutEntity);
+                self.presentationMode.wrappedValue.dismiss();
             }, label: {
                 Text("Add workout")
             })
-            .navigationBarTitleDisplayMode(.inline)
+            } else {
+                Button(action: {
+                    let workoutEntity = WorkoutEntity(id: -1, uid: workoutUid, name: workoutName, exercises: selectedExercises);
+                    // Workout gets inserted in cloud DB, but not workoutExercise and setEntity
+                    let defaults = UserDefaults.standard.dictionary(forKey: "tokens")!["accessToken"];
+                    WorkoutService().updateWorkout(token: defaults as! String, workoutEntity: workoutEntity);
+                    self.presentationMode.wrappedValue.dismiss();
+                }, label: {
+                    Text("Update Workout")
+                })
+            }
         }
+        .navigationBarTitle(workoutName)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

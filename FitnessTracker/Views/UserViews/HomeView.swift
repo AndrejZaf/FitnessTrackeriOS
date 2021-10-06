@@ -38,7 +38,9 @@ struct HomeView: View {
                 
                 VerticalWorkoutView(workouts: homeViewModel.listOfWorkouts)
                     .frame(height: 300);
-            }
+            }.onAppear(perform: {
+                Repository.shared.getWorkouts(numberOfWorkouts: 10);
+            })
 //            .navigationBarTitle("", displayMode: .inline)
             .navigationBarHidden(true);
         }
