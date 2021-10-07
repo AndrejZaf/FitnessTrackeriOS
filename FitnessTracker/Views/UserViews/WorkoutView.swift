@@ -20,7 +20,7 @@ struct WorkoutView: View {
                         workoutViewModel.search(search: searchState)
                     });
                 
-                VerticalWorkoutView(workouts: workoutViewModel.listOfWorkouts);
+                VerticalWorkoutView(workouts: $workoutViewModel.listOfWorkouts);
                 Divider();
                 HStack {
                     Spacer();
@@ -36,10 +36,7 @@ struct WorkoutView: View {
                 Spacer();
             }
             .onAppear(perform: {
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    // Put your code which should be executed with a delay here
                     workoutViewModel.loadInitalList();
-//                }
             })
             .padding(.top)
             .navigationBarHidden(true);

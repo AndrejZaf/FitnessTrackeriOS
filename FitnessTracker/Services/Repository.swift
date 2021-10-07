@@ -685,8 +685,8 @@ class Repository {
 
             } else {
                 for exercise in workout.exercises {
-                    var exerciseId = exercise.exercise_id;
-                    var workoutId = workoutId;
+                    let exerciseId = exercise.exercise_id;
+                    let workoutId = workoutId;
                     if sqlite3_prepare_v2(db, insertQuery, -1, &statement, nil) == SQLITE_OK {
                         sqlite3_bind_int(statement, 1, Int32(exerciseId));
                         sqlite3_bind_int(statement, 2, Int32(workoutId));
@@ -713,8 +713,8 @@ class Repository {
         sqlite3_exec(db, "BEGIN TRANSACTION", nil, nil, nil);
         if sqlite3_prepare_v2(db, insertSetQuery, -1, &statement, nil) == SQLITE_OK {
                 for exercise in workout.exercises {
-                    var exerciseId = exercise.exercise_id;
-                    var workoutId = workoutId;
+                    let exerciseId = exercise.exercise_id;
+                    let workoutId = workoutId;
                     var workoutExerciseId = -1;
 
                     if sqlite3_prepare_v2(db, "SELECT id FROM workout_exercise WHERE exercise_id=\(exerciseId) AND workout_id=\(workoutId)", -1, &statement, nil) == SQLITE_OK {
@@ -749,6 +749,5 @@ class Repository {
         else {
             print("Query is not as per requirement");
         }
-        
     }
 }

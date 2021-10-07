@@ -36,7 +36,7 @@ struct HomeView: View {
                 .padding(.horizontal)
                 
                 
-                VerticalWorkoutView(workouts: homeViewModel.listOfWorkouts)
+                VerticalWorkoutView(workouts: $homeViewModel.listOfWorkouts)
                     .frame(height: 300);
             }.onAppear(perform: {
                 Repository.shared.getWorkouts(numberOfWorkouts: 10);

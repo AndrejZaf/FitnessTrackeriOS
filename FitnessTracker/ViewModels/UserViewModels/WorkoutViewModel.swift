@@ -15,10 +15,11 @@ class WorkoutViewModel: ObservableObject {
     }
 
     func loadInitalList() -> Void {
-        listOfWorkouts = Repository.shared.getWorkouts();
+        print("Fetching new workouts")
+        self.listOfWorkouts = Repository.shared.getWorkouts();
     }
     
     func search(search: String) -> Void {
-        listOfWorkouts = Repository.shared.searchForWorkouts(workoutName: search);
+        self.listOfWorkouts = Repository.shared.searchForWorkouts(workoutName: search);
     }
 }

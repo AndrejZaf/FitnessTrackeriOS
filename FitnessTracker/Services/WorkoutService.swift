@@ -43,10 +43,10 @@ class WorkoutService {
         
         // Move the data to request
         workoutEntity.exercises.forEach({
-            var exerciseUid = Repository.shared.getExerciseUidByName(name: $0.name);
+            let exerciseUid = Repository.shared.getExerciseUidByName(name: $0.name);
             var createExerciseRequest = CreateExerciseRequest(uid: exerciseUid, sets: []);
             $0.exerciseSets.forEach({
-                var createSetRequest = CreateSetRequest(reps: $0.reps, weight: $0.weight, restPeriod: $0.rest_period);
+                let createSetRequest = CreateSetRequest(reps: $0.reps, weight: $0.weight, restPeriod: $0.rest_period);
                 createExerciseRequest.sets.append(createSetRequest);
             })
             createWorkoutRequest.exercises.append(createExerciseRequest);
@@ -103,10 +103,10 @@ class WorkoutService {
         
         // Move the data to request
         workoutEntity.exercises.forEach({
-            var exerciseUid = Repository.shared.getExerciseUidByName(name: $0.name);
+            let exerciseUid = Repository.shared.getExerciseUidByName(name: $0.name);
             var createExerciseRequest = CreateExerciseRequest(uid: exerciseUid, sets: []);
             $0.exerciseSets.forEach({
-                var createSetRequest = CreateSetRequest(reps: $0.reps, weight: $0.weight, restPeriod: $0.rest_period);
+                let createSetRequest = CreateSetRequest(reps: $0.reps, weight: $0.weight, restPeriod: $0.rest_period);
                 createExerciseRequest.sets.append(createSetRequest);
             })
             createWorkoutRequest.exercises.append(createExerciseRequest);
@@ -129,6 +129,24 @@ class WorkoutService {
                 return;
             }
             Repository.shared.updateWorkout(workout: workoutEntity)
+        }.resume();
+    }
+    
+    func deleteWorkout(token: String, workoutEntity: WorkoutEntity) -> Void {
+        guard let url = URL(string: "http://localhost:8080/api/workout/\(workoutEntity.uid)") else {
+            return;
+        }
+        
+        var request = URLRequest(url: url);
+        request.httpMethod = "DELETE";
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization");
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            guard let data = data, error == nil else {
+                return;
+            }
+            
         }.resume();
     }
 }

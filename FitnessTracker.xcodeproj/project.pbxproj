@@ -38,6 +38,7 @@
 		0D4D7F4826FBDF7C0047597F /* ExerciseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4D7F4726FBDF7C0047597F /* ExerciseService.swift */; };
 		0D4D7F4A26FBE0120047597F /* QueryConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4D7F4926FBE0120047597F /* QueryConstants.swift */; };
 		0D4FCEF7270CAE69004C13B7 /* CreateWorkoutRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4FCEF6270CAE69004C13B7 /* CreateWorkoutRequest.swift */; };
+		0D50B81A270F5B7F00F50D2D /* FocusModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D50B819270F5B7F00F50D2D /* FocusModeView.swift */; };
 		0D5325C026FD09C500CD4B4E /* ExerciseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5325BF26FD09C500CD4B4E /* ExerciseEntity.swift */; };
 		0D5325C226FD0BF700CD4B4E /* ExerciseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5325C126FD0BF700CD4B4E /* ExerciseRequest.swift */; };
 		0D556EEB26FA8C9900D57040 /* ExercisesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D556EEA26FA8C9900D57040 /* ExercisesView.swift */; };
@@ -111,6 +112,7 @@
 		0D4D7F4726FBDF7C0047597F /* ExerciseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseService.swift; sourceTree = "<group>"; };
 		0D4D7F4926FBE0120047597F /* QueryConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryConstants.swift; sourceTree = "<group>"; };
 		0D4FCEF6270CAE69004C13B7 /* CreateWorkoutRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWorkoutRequest.swift; sourceTree = "<group>"; };
+		0D50B819270F5B7F00F50D2D /* FocusModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusModeView.swift; sourceTree = "<group>"; };
 		0D5325BF26FD09C500CD4B4E /* ExerciseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseEntity.swift; sourceTree = "<group>"; };
 		0D5325C126FD0BF700CD4B4E /* ExerciseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRequest.swift; sourceTree = "<group>"; };
 		0D556EEA26FA8C9900D57040 /* ExercisesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesView.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				0D9D394E270B81CB00A6ECA6 /* CreateEditWorkoutView.swift */,
 				0D4B81DB270C7F09001A0547 /* SecondaryExerciseSetsView.swift */,
 				0D3EEEF2270CEE150065A6E7 /* BasicExerciseSetsView.swift */,
+				0D50B819270F5B7F00F50D2D /* FocusModeView.swift */,
 			);
 			path = DomainViews;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				0D8FACD426FA764600F1BBBD /* SignUpViewModel.swift in Sources */,
 				0D1092782700BDCA000A2676 /* HorizontalExercisesView.swift in Sources */,
 				0DD5C7D326FE9E6100917D72 /* UserDefaultsUtils.swift in Sources */,
+				0D50B81A270F5B7F00F50D2D /* FocusModeView.swift in Sources */,
 				0D995EFD26F90E7400BB1658 /* LoginBodyResponse.swift in Sources */,
 				0D24547F270E0BB0005BCB39 /* CreateWorkoutResponse.swift in Sources */,
 				0D4B81DA270C639E001A0547 /* SetTypeEnum.swift in Sources */,

@@ -43,6 +43,7 @@ struct ProfileView: View {
             Button(action: {
                 defaults.removeObject(forKey: "tokens");
                 defaults.removeObject(forKey: "loggedIn");
+                Repository.shared.deleteWorkouts();
             }, label: {
                 Text("Logout");
             })

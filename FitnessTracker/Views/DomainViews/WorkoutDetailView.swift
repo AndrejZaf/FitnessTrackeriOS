@@ -14,12 +14,17 @@ struct WorkoutDetailView: View {
     var body: some View {
         VStack {
             WorkoutExercisesView(exercises: $workout.exercises, editMode: $editMode)
-                .navigationBarTitle(Text(workout.name), displayMode: .inline)
-                .toolbar {
-                    NavigationLink(destination: CreateEditWorkoutView(selectedExercises: workout.exercises, workoutName: workout.name,workoutUid: workout.uid, editMode: true), label: {
-                        Image(systemName: "slider.horizontal.3");
-                    });
-                }
+            Spacer();
+            
+            NavigationLink(destination: FocusModeView(workout: workout), label: {
+                Text("Focus Mode")
+            })
+            .navigationBarTitle(Text(workout.name), displayMode: .inline)
+            .toolbar {
+                NavigationLink(destination: CreateEditWorkoutView(selectedExercises: workout.exercises, workoutName: workout.name,workoutUid: workout.uid, editMode: true), label: {
+                    Image(systemName: "slider.horizontal.3");
+                })
+            }
         }
     }
 }
