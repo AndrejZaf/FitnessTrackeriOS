@@ -10,6 +10,7 @@ import SwiftUI
 struct WorkoutDetailView: View {
     @State private var editMode: Bool = false;
     @State var workout: WorkoutEntity;
+    @State private var workoutAdded: Bool = false;
     @Environment(\.presentationMode) var presentationMode;
     var body: some View {
         VStack {
@@ -20,11 +21,11 @@ struct WorkoutDetailView: View {
                 Text("Focus Mode")
             })
             .navigationBarTitle(Text(workout.name), displayMode: .inline)
-            .toolbar {
-                NavigationLink(destination: CreateEditWorkoutView(selectedExercises: workout.exercises, workoutName: workout.name,workoutUid: workout.uid, editMode: true), label: {
-                    Image(systemName: "slider.horizontal.3");
-                })
-            }
+//            .toolbar {
+//                NavigationLink(destination: CreateEditWorkoutView(selectedExercises: workout.exercises, workoutName: workout.name,workoutUid: workout.uid, showToastNotification: $workoutAdded, editMode: true), label: {
+//                    Image(systemName: "slider.horizontal.3");
+//                })
+//            }
         }
     }
 }

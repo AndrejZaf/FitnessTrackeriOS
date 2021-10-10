@@ -16,7 +16,7 @@ class WorkoutService {
 
         var request = URLRequest(url: url);
         request.httpMethod = "GET";
-        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization");
         
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             guard let data = data, error == nil else {
@@ -30,6 +30,8 @@ class WorkoutService {
             }
             
             Repository.shared.insertWorkouts(workouts: workoutsResponse);
+            RegulatorService.shared.release();
+            RegulatorService.shared.setAvailableToLoad(true);
         }.resume();
     }
     

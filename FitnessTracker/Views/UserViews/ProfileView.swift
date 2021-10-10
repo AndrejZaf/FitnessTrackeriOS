@@ -44,6 +44,7 @@ struct ProfileView: View {
                 defaults.removeObject(forKey: "tokens");
                 defaults.removeObject(forKey: "loggedIn");
                 Repository.shared.deleteWorkouts();
+                RegulatorService.shared.setAvailableToLoad(false);
             }, label: {
                 Text("Logout");
             })

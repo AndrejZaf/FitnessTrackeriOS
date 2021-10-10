@@ -10,6 +10,7 @@ import SwiftUI
 struct WorkoutView: View {
     @StateObject private var workoutViewModel = WorkoutViewModel();
     @State private var searchState: String = "";
+    @State private var workoutAdded: Bool = false;
     var body: some View {
         NavigationView {
             VStack{
@@ -20,12 +21,12 @@ struct WorkoutView: View {
                         workoutViewModel.search(search: searchState)
                     });
                 
-                VerticalWorkoutView(workouts: $workoutViewModel.listOfWorkouts);
+                VerticalWorkoutView(workouts: $workoutViewModel.listOfWorkouts, workoutAdded: $workoutAdded);
                 Divider();
                 HStack {
                     Spacer();
                     NavigationLink(
-                        destination: CreateEditWorkoutView(),
+                        destination: CreateEditWorkoutView(showToastNotification: $workoutAdded),
                         label: {
                             Text("\(Image(systemName: "plus.circle"))")
                                 .font(.title)
@@ -38,6 +39,9 @@ struct WorkoutView: View {
             .onAppear(perform: {
                     workoutViewModel.loadInitalList();
             })
+            .toast(isPresenting: $workoutAdded, duration: 2, tapToDismiss: true, alert: {
+                AlertToast(displayMode: .hud, type: .complete(Color.black), title: "Workout added");
+            }, onTap: { workoutAdded = false }, completion: { workoutAdded = false } )
             .padding(.top)
             .navigationBarHidden(true);
         }.navigationViewStyle(StackNavigationViewStyle());

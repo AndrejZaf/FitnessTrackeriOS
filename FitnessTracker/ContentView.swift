@@ -10,16 +10,24 @@ import SwiftUI
 struct ContentView: View {
     let defaults = UserDefaults.standard;
     @AppStorage("loggedIn") var loggedIn: Bool = false;
+    @AppStorage("loginAnimation") var loginAnimation: Bool = false;
     
     var body: some View {
         VStack {
             // defaults.value(forKey: "tokens") == nil
-            if !loggedIn {
-                LoginView();
+            if loginAnimation {
+                LoadingView();
+            } else {
+                if !loggedIn {
+                    LoginView();
+                }
+                else {
+                    MainView().onAppear(perform: {
+                        CronService().cronStart();
+                    });
+                }
             }
-            else {
-                MainView();
-            }
+            
         }.onAppear(perform: {
             Repository.shared;
         })

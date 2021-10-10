@@ -28,7 +28,6 @@ struct SecondaryExerciseSetsView: View {
                     Spacer();
                     Button(action: {
                         workoutExercise.exerciseSets = exerciseSets;
-//                        exercises.append(WorkoutExerciseEntity(id: -1, name: exercise.name, exercise_id: exercise.id, workout_id: -1, exerciseSets: exerciseSets))
                         self.presentationMode.wrappedValue.dismiss();
                     }, label: {
                         Text("Add exercise with sets")

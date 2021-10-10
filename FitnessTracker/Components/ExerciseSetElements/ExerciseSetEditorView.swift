@@ -42,9 +42,3 @@ struct ExerciseSetEditorView: View {
         
     }
 }
-
-//struct ExerciseSetEditorView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ExerciseSetEditorView()
-//    }
-//}

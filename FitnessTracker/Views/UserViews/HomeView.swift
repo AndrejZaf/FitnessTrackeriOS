@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject private var homeViewModel = HomeViewModel();
-    
+    @State var workoutChanges: Bool = false;
     var body: some View {
         NavigationView() {
             VStack {
@@ -36,7 +36,7 @@ struct HomeView: View {
                 .padding(.horizontal)
                 
                 
-                VerticalWorkoutView(workouts: $homeViewModel.listOfWorkouts)
+                VerticalWorkoutView(workouts: $homeViewModel.listOfWorkouts, workoutAdded: $workoutChanges)
                     .frame(height: 300);
             }.onAppear(perform: {
                 Repository.shared.getWorkouts(numberOfWorkouts: 10);

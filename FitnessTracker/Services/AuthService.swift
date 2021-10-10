@@ -110,4 +110,37 @@ class AuthService {
             completion(.success(userSignupResponse.email));
         }.resume();
     }
+    
+    
+    func refreshToken() -> Void {
+        let defaults = UserDefaults.standard;
+        let tokens = defaults.dictionary(forKey: "tokens");
+        let accessToken = tokens!["accessToken"];
+        
+        guard let url = URL(string: "http://localhost:8080/api/user/token/refresh") else {
+            return;
+        }
+
+        
+        var request = URLRequest(url: url);
+        request.httpMethod = "GET";
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization");
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let data = data, error == nil else {
+                return;
+            }
+            
+            
+            guard let loginResponse = try? JSONDecoder().decode(LoginBodyResponse.self, from: data) else {
+                defaults.removeObject(forKey: "tokens");
+                defaults.removeObject(forKey: "loggedIn");
+                return;
+            }
+            
+            let tokens = ["accessToken": loginResponse.accessToken, "refreshToken": loginResponse.refreshToken];
+            defaults.setValue(["accessToken": tokens["accessToken"]!!, "refreshToken": tokens["refreshToken"]!!], forKey: "tokens");
+        }.resume();
+        
+    }
 }

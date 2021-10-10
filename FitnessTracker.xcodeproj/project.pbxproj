@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -52,10 +52,24 @@
 		0D5B787E26FA7F2000800E86 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5B787D26FA7F2000800E86 /* MainView.swift */; };
 		0D6C3CE726F7DC3100DDEFE7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6C3CE626F7DC3100DDEFE7 /* LoginView.swift */; };
 		0D6C3CE926F7DE8C00DDEFE7 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6C3CE826F7DE8C00DDEFE7 /* CustomTextField.swift */; };
+		0D7301B6271206AA00688859 /* NavLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7301B5271206AA00688859 /* NavLink.swift */; };
+		0D7301B82712113400688859 /* RegulatorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7301B72712113400688859 /* RegulatorService.swift */; };
+		0D7301BB27124CF700688859 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7301BA27124CF700688859 /* LoadingView.swift */; };
+		0D7301BD27124E0600688859 /* GifImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7301BC27124E0600688859 /* GifImage.swift */; };
+		0D7301BF27124FC000688859 /* lift.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0D7301BE27124FC000688859 /* lift.gif */; };
+		0D7301C22712528F00688859 /* SwiftCron in Frameworks */ = {isa = PBXBuildFile; productRef = 0D7301C12712528F00688859 /* SwiftCron */; };
+		0D7301C4271252ED00688859 /* CronService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7301C3271252ED00688859 /* CronService.swift */; };
+		0D83A2992712FD97005A4946 /* SwiftJWT in Frameworks */ = {isa = PBXBuildFile; productRef = 0D83A2982712FD97005A4946 /* SwiftJWT */; };
+		0D83A29B2712FDA6005A4946 /* JwtService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D83A29A2712FDA6005A4946 /* JwtService.swift */; };
+		0D83A29D2712FDEF005A4946 /* JwtClaims.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D83A29C2712FDEF005A4946 /* JwtClaims.swift */; };
+		0D83A29F27130C1D005A4946 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D83A29E27130C1D005A4946 /* DateExtension.swift */; };
 		0D87CF9F26E3A5DC00F37269 /* FitnessTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D87CF9E26E3A5DC00F37269 /* FitnessTrackerApp.swift */; };
 		0D87CFA126E3A5DC00F37269 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D87CFA026E3A5DC00F37269 /* ContentView.swift */; };
 		0D87CFA326E3A5DD00F37269 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D87CFA226E3A5DD00F37269 /* Assets.xcassets */; };
 		0D87CFA626E3A5DD00F37269 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D87CFA526E3A5DD00F37269 /* Preview Assets.xcassets */; };
+		0D8B21EA2711A93E004F7BE9 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8B21E92711A93E004F7BE9 /* ActivityIndicator.swift */; };
+		0D8B21EC2711A94C004F7BE9 /* AlertToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8B21EB2711A94C004F7BE9 /* AlertToast.swift */; };
+		0D8B21EE2711A954004F7BE9 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8B21ED2711A954004F7BE9 /* BlurView.swift */; };
 		0D8FACC626FA5A5100F1BBBD /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8FACC526FA5A5100F1BBBD /* ApiConstants.swift */; };
 		0D8FACC826FA5D7500F1BBBD /* ForgotPasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8FACC726FA5D7500F1BBBD /* ForgotPasswordRequest.swift */; };
 		0D8FACCC26FA5E8300F1BBBD /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8FACCB26FA5E8300F1BBBD /* ForgotPasswordViewModel.swift */; };
@@ -126,12 +140,24 @@
 		0D5B787D26FA7F2000800E86 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		0D6C3CE626F7DC3100DDEFE7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0D6C3CE826F7DE8C00DDEFE7 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		0D7301B5271206AA00688859 /* NavLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavLink.swift; sourceTree = "<group>"; };
+		0D7301B72712113400688859 /* RegulatorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegulatorService.swift; sourceTree = "<group>"; };
+		0D7301BA27124CF700688859 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		0D7301BC27124E0600688859 /* GifImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImage.swift; sourceTree = "<group>"; };
+		0D7301BE27124FC000688859 /* lift.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lift.gif; sourceTree = "<group>"; };
+		0D7301C3271252ED00688859 /* CronService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CronService.swift; sourceTree = "<group>"; };
+		0D83A29A2712FDA6005A4946 /* JwtService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtService.swift; sourceTree = "<group>"; };
+		0D83A29C2712FDEF005A4946 /* JwtClaims.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtClaims.swift; sourceTree = "<group>"; };
+		0D83A29E27130C1D005A4946 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		0D87CF9B26E3A5DC00F37269 /* FitnessTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitnessTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D87CF9E26E3A5DC00F37269 /* FitnessTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitnessTrackerApp.swift; sourceTree = "<group>"; };
 		0D87CFA026E3A5DC00F37269 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0D87CFA226E3A5DD00F37269 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D87CFA526E3A5DD00F37269 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0D87CFA726E3A5DD00F37269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0D8B21E92711A93E004F7BE9 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		0D8B21EB2711A94C004F7BE9 /* AlertToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertToast.swift; sourceTree = "<group>"; };
+		0D8B21ED2711A954004F7BE9 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		0D8FACC526FA5A5100F1BBBD /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
 		0D8FACC726FA5D7500F1BBBD /* ForgotPasswordRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordRequest.swift; sourceTree = "<group>"; };
 		0D8FACCB26FA5E8300F1BBBD /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
@@ -161,6 +187,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D83A2992712FD97005A4946 /* SwiftJWT in Frameworks */,
+				0D7301C22712528F00688859 /* SwiftCron in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +298,7 @@
 				0D5325BE26FD09B700CD4B4E /* Entities */,
 				0D995EFB26F90E6800BB1658 /* Responses */,
 				0D995EF826F90D0500BB1658 /* Requests */,
+				0D83A29C2712FDEF005A4946 /* JwtClaims.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -293,6 +322,7 @@
 		0D65828026E6A0CA000328F0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0D7301B927124CEC00688859 /* Common */,
 				0D556EF026FA912E00D57040 /* DomainViews */,
 				0D5B787C26FA7DE700800E86 /* UserViews */,
 				0D04B0DC26F9293D008578B8 /* AuthViews */,
@@ -317,6 +347,9 @@
 				0D39BFEA26FBB4440027E5E4 /* Repository.swift */,
 				0D4D7F4726FBDF7C0047597F /* ExerciseService.swift */,
 				0D5B54F52705DED900671232 /* WorkoutService.swift */,
+				0D7301B72712113400688859 /* RegulatorService.swift */,
+				0D7301C3271252ED00688859 /* CronService.swift */,
+				0D83A29A2712FDA6005A4946 /* JwtService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -324,6 +357,7 @@
 		0D65828526E6A26A000328F0 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				0D8B21E82711A908004F7BE9 /* AlertToast */,
 				0D33853727074BDE00A04C8F /* BottomSheet */,
 				0D338534270748FA00A04C8F /* ExerciseSetElements */,
 				0DB2DCD0270655BD00BF9A29 /* WorkoutElements */,
@@ -332,8 +366,20 @@
 				0D6C3CE826F7DE8C00DDEFE7 /* CustomTextField.swift */,
 				0D3B6F0B26F7E2AE0079270B /* CustomButton.swift */,
 				0D43A446270111B2004BBCD0 /* BadgeView.swift */,
+				0D7301B5271206AA00688859 /* NavLink.swift */,
+				0D7301BE27124FC000688859 /* lift.gif */,
+				0D7301BC27124E0600688859 /* GifImage.swift */,
+				0D83A29E27130C1D005A4946 /* DateExtension.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		0D7301B927124CEC00688859 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0D7301BA27124CF700688859 /* LoadingView.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		0D87CF9226E3A5DC00F37269 = {
@@ -376,6 +422,16 @@
 				0D87CFA526E3A5DD00F37269 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0D8B21E82711A908004F7BE9 /* AlertToast */ = {
+			isa = PBXGroup;
+			children = (
+				0D8B21E92711A93E004F7BE9 /* ActivityIndicator.swift */,
+				0D8B21EB2711A94C004F7BE9 /* AlertToast.swift */,
+				0D8B21ED2711A954004F7BE9 /* BlurView.swift */,
+			);
+			path = AlertToast;
 			sourceTree = "<group>";
 		};
 		0D995EE926F8F2C700BB1658 /* Styles */ = {
@@ -446,6 +502,10 @@
 			dependencies = (
 			);
 			name = FitnessTracker;
+			packageProductDependencies = (
+				0D7301C12712528F00688859 /* SwiftCron */,
+				0D83A2982712FD97005A4946 /* SwiftJWT */,
+			);
 			productName = FitnessTracker;
 			productReference = 0D87CF9B26E3A5DC00F37269 /* FitnessTracker.app */;
 			productType = "com.apple.product-type.application";
@@ -473,6 +533,10 @@
 				Base,
 			);
 			mainGroup = 0D87CF9226E3A5DC00F37269;
+			packageReferences = (
+				0D7301C02712528F00688859 /* XCRemoteSwiftPackageReference "SwiftCron" */,
+				0D83A2972712FD97005A4946 /* XCRemoteSwiftPackageReference "Swift-JWT" */,
+			);
 			productRefGroup = 0D87CF9C26E3A5DC00F37269 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -488,6 +552,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D87CFA626E3A5DD00F37269 /* Preview Assets.xcassets in Resources */,
+				0D7301BF27124FC000688859 /* lift.gif in Resources */,
 				0D87CFA326E3A5DD00F37269 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -504,16 +569,20 @@
 				0D4D7F4826FBDF7C0047597F /* ExerciseService.swift in Sources */,
 				0D33853927074BFB00A04C8F /* BottomSheet.swift in Sources */,
 				0D33853F27074CCE00A04C8F /* ExerciseSetEditorView.swift in Sources */,
+				0D83A29D2712FDEF005A4946 /* JwtClaims.swift in Sources */,
 				0D8FACD026FA72E700F1BBBD /* UserSignupRequest.swift in Sources */,
 				0D10926E2700A178000A2676 /* HomeViewModel.swift in Sources */,
+				0D8B21EC2711A94C004F7BE9 /* AlertToast.swift in Sources */,
 				0D10927A2700C26C000A2676 /* ExerciseView.swift in Sources */,
 				0D5325C226FD0BF700CD4B4E /* ExerciseRequest.swift in Sources */,
+				0D7301B6271206AA00688859 /* NavLink.swift in Sources */,
 				0D5B787E26FA7F2000800E86 /* MainView.swift in Sources */,
 				0D8FACC626FA5A5100F1BBBD /* ApiConstants.swift in Sources */,
 				0D4FCEF7270CAE69004C13B7 /* CreateWorkoutRequest.swift in Sources */,
 				0D8FACD426FA764600F1BBBD /* SignUpViewModel.swift in Sources */,
 				0D1092782700BDCA000A2676 /* HorizontalExercisesView.swift in Sources */,
 				0DD5C7D326FE9E6100917D72 /* UserDefaultsUtils.swift in Sources */,
+				0D7301BD27124E0600688859 /* GifImage.swift in Sources */,
 				0D50B81A270F5B7F00F50D2D /* FocusModeView.swift in Sources */,
 				0D995EFD26F90E7400BB1658 /* LoginBodyResponse.swift in Sources */,
 				0D24547F270E0BB0005BCB39 /* CreateWorkoutResponse.swift in Sources */,
@@ -523,9 +592,11 @@
 				0D39BFEB26FBB4440027E5E4 /* Repository.swift in Sources */,
 				0D04B0DF26F92969008578B8 /* HomeView.swift in Sources */,
 				0D6C3CE726F7DC3100DDEFE7 /* LoginView.swift in Sources */,
+				0D7301C4271252ED00688859 /* CronService.swift in Sources */,
 				0D5B54F62705DED900671232 /* WorkoutService.swift in Sources */,
 				0D995EF126F8F58700BB1658 /* ForgotPasswordView.swift in Sources */,
 				0DB2DCDA27065C3800BF9A29 /* WorkoutDetailView.swift in Sources */,
+				0D7301B82712113400688859 /* RegulatorService.swift in Sources */,
 				0D995EF326F9079400BB1658 /* AuthService.swift in Sources */,
 				0D5B54FA27062D0300671232 /* WorkoutEntity.swift in Sources */,
 				0DB2DCE02706640800BF9A29 /* WorkoutExerciseRowView.swift in Sources */,
@@ -534,17 +605,20 @@
 				0D995EEB26F8F2E400BB1658 /* CustomTextFieldStyle.swift in Sources */,
 				0D43A43F2700F160004BBCD0 /* ExercisesViewModel.swift in Sources */,
 				0D556EEB26FA8C9900D57040 /* ExercisesView.swift in Sources */,
+				0D83A29F27130C1D005A4946 /* DateExtension.swift in Sources */,
 				0D8FACCC26FA5E8300F1BBBD /* ForgotPasswordViewModel.swift in Sources */,
 				0D43A4432701013A004BBCD0 /* ImageUtils.swift in Sources */,
 				0D5325C026FD09C500CD4B4E /* ExerciseEntity.swift in Sources */,
 				0D995EEF26F8F57A00BB1658 /* SignUpView.swift in Sources */,
 				0DB2DCDC2706630B00BF9A29 /* WorkoutExercisesView.swift in Sources */,
+				0D8B21EE2711A954004F7BE9 /* BlurView.swift in Sources */,
 				0D3EEEF3270CEE150065A6E7 /* BasicExerciseSetsView.swift in Sources */,
 				0D87CFA126E3A5DC00F37269 /* ContentView.swift in Sources */,
 				0D3385362707492D00A04C8F /* ExerciseSetRowView.swift in Sources */,
 				0D556EEF26FA8CDF00D57040 /* ProfileView.swift in Sources */,
 				0D33853B27074C1200A04C8F /* RoundedCorner.swift in Sources */,
 				0D8FACD226FA742800F1BBBD /* UserSignupResponse.swift in Sources */,
+				0D8B21EA2711A93E004F7BE9 /* ActivityIndicator.swift in Sources */,
 				0D1092702700A2DE000A2676 /* ExerciseElementView.swift in Sources */,
 				0D3385332707366700A04C8F /* ExerciseSetsView.swift in Sources */,
 				0D5B54F82705E20800671232 /* WorkoutsRequest.swift in Sources */,
@@ -559,9 +633,11 @@
 				0D995EFA26F90D1F00BB1658 /* LoginBodyRequest.swift in Sources */,
 				0D43A447270111B2004BBCD0 /* BadgeView.swift in Sources */,
 				0D4B81D0270C34C2001A0547 /* CreateEditWorkoutViewModel.swift in Sources */,
+				0D83A29B2712FDA6005A4946 /* JwtService.swift in Sources */,
 				0D43A4412700FBA0004BBCD0 /* ExerciseRow.swift in Sources */,
 				0D87CF9F26E3A5DC00F37269 /* FitnessTrackerApp.swift in Sources */,
 				0D9D394F270B81CB00A6ECA6 /* CreateEditWorkoutView.swift in Sources */,
+				0D7301BB27124CF700688859 /* LoadingView.swift in Sources */,
 				0D5B54FC27062DFA00671232 /* WorkoutExerciseEntity.swift in Sources */,
 				0D995EF526F908E200BB1658 /* LoginViewModel.swift in Sources */,
 				0D4D7F4A26FBE0120047597F /* QueryConstants.swift in Sources */,
@@ -756,6 +832,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0D7301C02712528F00688859 /* XCRemoteSwiftPackageReference "SwiftCron" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rymcol/SwiftCron.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.0;
+			};
+		};
+		0D83A2972712FD97005A4946 /* XCRemoteSwiftPackageReference "Swift-JWT" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kitura/Swift-JWT.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.6.200;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0D7301C12712528F00688859 /* SwiftCron */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0D7301C02712528F00688859 /* XCRemoteSwiftPackageReference "SwiftCron" */;
+			productName = SwiftCron;
+		};
+		0D83A2982712FD97005A4946 /* SwiftJWT */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0D83A2972712FD97005A4946 /* XCRemoteSwiftPackageReference "Swift-JWT" */;
+			productName = SwiftJWT;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0D87CF9326E3A5DC00F37269 /* Project object */;
 }
