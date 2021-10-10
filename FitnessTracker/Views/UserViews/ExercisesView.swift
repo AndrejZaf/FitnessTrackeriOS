@@ -73,6 +73,7 @@ struct ExercisesView: View {
             }
             .padding(.top)
             .navigationBarHidden(true);
-        }.navigationViewStyle(StackNavigationViewStyle());
+        }.accentColor(.black)
+        .navigationViewStyle(StackNavigationViewStyle());
     }
 }

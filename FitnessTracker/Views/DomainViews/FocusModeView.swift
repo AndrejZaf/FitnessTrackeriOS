@@ -40,7 +40,7 @@ struct FocusModeView: View {
                         self.presentationMode.wrappedValue.dismiss();
                     }, label: {
                         Text("Finish Workout")
-                    })
+                    }).buttonStyle(CustomButtonStyle(backgroundColor: .black, foregroundColor: .white, isDisabled: false))
                 }
             }
             else {
@@ -56,9 +56,14 @@ struct FocusModeView: View {
                         }
                     }
                     else {
-                        Text("\(workout.exercises[exerciseIndex].exerciseSets[setIndex].weight) kg").font(.title).fontWeight(.bold).padding();
-                        Text("\(workout.exercises[exerciseIndex].name)").font(.title).fontWeight(.bold).padding();
-                        Text("\(workout.exercises[exerciseIndex].exerciseSets[setIndex].reps) Reps").font(.title2).padding();
+                        if workout.exercises[exerciseIndex].exerciseSets.count == 0 {
+                            Text("\(workout.exercises[exerciseIndex].name)").font(.title).fontWeight(.bold).padding();
+                        } else {
+                            Text("\(workout.exercises[exerciseIndex].exerciseSets[setIndex].weight) kg").font(.title).fontWeight(.bold).padding();
+                            Text("\(workout.exercises[exerciseIndex].name)").font(.title).fontWeight(.bold).padding();
+                            Text("\(workout.exercises[exerciseIndex].exerciseSets[setIndex].reps) Reps").font(.title2).padding();
+                        }
+                        
                     }
                 }.frame(alignment: .center)
                 Spacer();
@@ -91,22 +96,29 @@ struct FocusModeView: View {
                             }).padding()
                             
                             Button(action: {
-                                if setIndex + 1 <= workout.exercises[exerciseIndex].exerciseSets.count - 1 {
-                                    setIndex = setIndex + 1;
-                                    startTimer = true;
-                                    timeRemaining = workout.exercises[exerciseIndex].exerciseSets[setIndex].rest_period;
-                                } else {
-                                    setIndex = 0;
-                                    timeRemaining = workout.exercises[exerciseIndex].exerciseSets[setIndex].rest_period;
+                                if workout.exercises[exerciseIndex].exerciseSets.count == 0 {
                                     if exerciseIndex + 1 <= workout.exercises.count - 1 {
                                         exerciseIndex = exerciseIndex + 1;
                                     } else {
                                         workoutFinished = true;
                                     }
-                                    
-                                    startTimer = true;
+                                } else {
+                                    if setIndex + 1 <= workout.exercises[exerciseIndex].exerciseSets.count - 1 {
+                                        setIndex = setIndex + 1;
+                                        startTimer = true;
+                                        timeRemaining = workout.exercises[exerciseIndex].exerciseSets[setIndex].rest_period;
+                                    } else {
+                                        setIndex = 0;
+                                        timeRemaining = workout.exercises[exerciseIndex].exerciseSets[setIndex].rest_period;
+                                        if exerciseIndex + 1 <= workout.exercises.count - 1 {
+                                            exerciseIndex = exerciseIndex + 1;
+                                        } else {
+                                            workoutFinished = true;
+                                        }
+                                        
+                                        startTimer = true;
+                                    }
                                 }
-
                             }, label: {
                                 Text("Next set")
                             }).padding()

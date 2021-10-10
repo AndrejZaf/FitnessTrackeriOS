@@ -44,7 +44,8 @@ struct WorkoutView: View {
             }, onTap: { workoutAdded = false }, completion: { workoutAdded = false } )
             .padding(.top)
             .navigationBarHidden(true);
-        }.navigationViewStyle(StackNavigationViewStyle());
+        }.accentColor(.black)
+        .navigationViewStyle(StackNavigationViewStyle());
     }
 }
 

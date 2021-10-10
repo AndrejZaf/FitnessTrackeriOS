@@ -14,13 +14,17 @@ struct WorkoutDetailView: View {
     @Environment(\.presentationMode) var presentationMode;
     var body: some View {
         VStack {
-            WorkoutExercisesView(exercises: $workout.exercises, editMode: $editMode)
+            WorkoutExercisesView(exercises: $workout.exercises, editMode: $editMode).navigationBarTitle(Text(workout.name), displayMode: .inline)
             Spacer();
             
-            NavigationLink(destination: FocusModeView(workout: workout), label: {
-                Text("Focus Mode")
-            })
-            .navigationBarTitle(Text(workout.name), displayMode: .inline)
+            if workout.exercises.count > 0 {
+                NavigationLink(destination: FocusModeView(workout: workout), label: {
+                    Text("Focus Mode")
+                })
+                .buttonStyle(CustomButtonStyle(backgroundColor: .black, foregroundColor: .white, isDisabled: false))
+            }
+            
+            
 //            .toolbar {
 //                NavigationLink(destination: CreateEditWorkoutView(selectedExercises: workout.exercises, workoutName: workout.name,workoutUid: workout.uid, showToastNotification: $workoutAdded, editMode: true), label: {
 //                    Image(systemName: "slider.horizontal.3");

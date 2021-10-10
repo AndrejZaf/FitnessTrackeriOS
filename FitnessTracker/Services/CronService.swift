@@ -10,14 +10,16 @@ import SwiftCron;
 
 struct CronService {
     let defaults = UserDefaults.standard;
-    let queue = DispatchQueue(label: "queue", attributes: .concurrent);
+    let queue = DispatchQueue(label: "cronQueue", attributes: .concurrent);
     
     func cronStart() {
         self.queue.async {
             let tokens = defaults.dictionary(forKey: "tokens");
             let accessToken = tokens!["accessToken"];
-            let cron = Cron(frequency: 180);
+            // TODO Determine a correct value for a cron job every 30 minutes?
+            let cron = Cron(frequency: 1800);
             let job = CronJob({
+//                Repository.shared.deleteWorkouts();
                 WorkoutService().getWorkouts(token: accessToken as! String);
             })
 

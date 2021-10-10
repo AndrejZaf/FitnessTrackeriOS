@@ -14,7 +14,8 @@ struct LoginView: View {
         NavigationView {
             VStack {
                 Spacer();
-                
+                Image("lift-logo").resizable().frame(width: 150, height: 120, alignment: .center)
+                    .padding(.bottom);
                 TextField("Email", text: $loginViewModel.email)
                     .textFieldStyle(CustomTextFieldStyle())
                     .padding(.horizontal);
@@ -24,7 +25,7 @@ struct LoginView: View {
                     .padding();
                 
                 
-                CustomButton(title: "Login", disabled: false, backgroundColor: Color.blue, foregroundColor: Color.white, action: {
+                CustomButton(title: "Login", disabled: false, backgroundColor: Color.black, foregroundColor: Color.white, action: {
                     loginViewModel.login();
                 });
                 
@@ -48,13 +49,13 @@ struct LoginView: View {
                             Text("Don't have an account?")
                                 .foregroundColor(.secondary);
                             Text("Sign Up")
-                                .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                                .foregroundColor(.black)
                     });
                     
                     
                 }.padding();
             }
-        }
+        }.accentColor(.black);
     }
 }
 

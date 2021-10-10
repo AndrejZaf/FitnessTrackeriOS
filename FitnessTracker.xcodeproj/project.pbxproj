@@ -63,6 +63,7 @@
 		0D83A29B2712FDA6005A4946 /* JwtService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D83A29A2712FDA6005A4946 /* JwtService.swift */; };
 		0D83A29D2712FDEF005A4946 /* JwtClaims.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D83A29C2712FDEF005A4946 /* JwtClaims.swift */; };
 		0D83A29F27130C1D005A4946 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D83A29E27130C1D005A4946 /* DateExtension.swift */; };
+		0D83A2A12713330E005A4946 /* NavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D83A2A02713330E005A4946 /* NavigationControllerExtension.swift */; };
 		0D87CF9F26E3A5DC00F37269 /* FitnessTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D87CF9E26E3A5DC00F37269 /* FitnessTrackerApp.swift */; };
 		0D87CFA126E3A5DC00F37269 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D87CFA026E3A5DC00F37269 /* ContentView.swift */; };
 		0D87CFA326E3A5DD00F37269 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D87CFA226E3A5DD00F37269 /* Assets.xcassets */; };
@@ -149,6 +150,7 @@
 		0D83A29A2712FDA6005A4946 /* JwtService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtService.swift; sourceTree = "<group>"; };
 		0D83A29C2712FDEF005A4946 /* JwtClaims.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtClaims.swift; sourceTree = "<group>"; };
 		0D83A29E27130C1D005A4946 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		0D83A2A02713330E005A4946 /* NavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerExtension.swift; sourceTree = "<group>"; };
 		0D87CF9B26E3A5DC00F37269 /* FitnessTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitnessTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D87CF9E26E3A5DC00F37269 /* FitnessTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitnessTrackerApp.swift; sourceTree = "<group>"; };
 		0D87CFA026E3A5DC00F37269 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 				0D7301BE27124FC000688859 /* lift.gif */,
 				0D7301BC27124E0600688859 /* GifImage.swift */,
 				0D83A29E27130C1D005A4946 /* DateExtension.swift */,
+				0D83A2A02713330E005A4946 /* NavigationControllerExtension.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 				0D33853F27074CCE00A04C8F /* ExerciseSetEditorView.swift in Sources */,
 				0D83A29D2712FDEF005A4946 /* JwtClaims.swift in Sources */,
 				0D8FACD026FA72E700F1BBBD /* UserSignupRequest.swift in Sources */,
+				0D83A2A12713330E005A4946 /* NavigationControllerExtension.swift in Sources */,
 				0D10926E2700A178000A2676 /* HomeViewModel.swift in Sources */,
 				0D8B21EC2711A94C004F7BE9 /* AlertToast.swift in Sources */,
 				0D10927A2700C26C000A2676 /* ExerciseView.swift in Sources */,

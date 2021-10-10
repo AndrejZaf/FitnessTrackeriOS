@@ -13,8 +13,9 @@ struct HomeView: View {
     var body: some View {
         NavigationView() {
             VStack {
-                Text("Test").font(.headline)
-                Text("Looks like it's a good day to have a solid workout! Don't miss it")
+                HStack {
+                    Text("Looks like it's a good day to have a solid workout! Don't miss it").lineLimit(3);
+                }.padding(.horizontal)
                 Divider()
                     .padding(.horizontal);
                 
@@ -33,7 +34,7 @@ struct HomeView: View {
                     Text("Workouts");
                     Spacer();
                 }
-                .padding(.horizontal)
+                .padding()
                 
                 
                 VerticalWorkoutView(workouts: $homeViewModel.listOfWorkouts, workoutAdded: $workoutChanges)
@@ -43,7 +44,7 @@ struct HomeView: View {
             })
 //            .navigationBarTitle("", displayMode: .inline)
             .navigationBarHidden(true);
-        }
+        }.accentColor(.black);
 //        .navigationBarHidden(true);
 //        .navigationViewStyle(StackNavigationViewStyle());
     }

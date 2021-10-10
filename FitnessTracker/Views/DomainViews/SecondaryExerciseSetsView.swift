@@ -26,11 +26,9 @@ struct SecondaryExerciseSetsView: View {
                 }
                 if setType == SetType.Add {
                     Spacer();
-                    Button(action: {
+                    CustomButton(title: "Save", disabled: false, backgroundColor: .black, foregroundColor: .white, action: {
                         workoutExercise.exerciseSets = exerciseSets;
                         self.presentationMode.wrappedValue.dismiss();
-                    }, label: {
-                        Text("Add exercise with sets")
                     })
                 }
             }.bottomSheet(isPresented: $isSheetShown, height: 400, content: {

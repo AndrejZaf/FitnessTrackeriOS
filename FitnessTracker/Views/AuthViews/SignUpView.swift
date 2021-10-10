@@ -50,7 +50,7 @@ struct SignUpView: View {
             .padding(.bottom, 10)
             .padding(.horizontal);
             
-            CustomButton(title: "Sign Up", disabled: false, backgroundColor: Color.blue, foregroundColor: Color.white, action: {
+            CustomButton(title: "Sign Up", disabled: false, backgroundColor: Color.black, foregroundColor: Color.white, action: {
                 signUpViewModel.signUp();
             }).alert(isPresented: Binding<Bool>(
                 get: { signUpViewModel.isFinished }, set: {_ in }

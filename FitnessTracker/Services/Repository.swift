@@ -750,4 +750,59 @@ class Repository {
             print("Query is not as per requirement");
         }
     }
+    
+    
+    func deleteWorkout(workoutUid: String) -> Void {
+        let workoutId = getWorkoutIdByUid(uid: workoutUid);
+        let getWorkoutExerciseIDs = "SELECT id FROM workout_exercise WHERE workout_id=\(workoutId)";
+        
+        var statement: OpaquePointer? = nil;
+        
+        var list = [Int]();
+        
+        if sqlite3_prepare(db, getWorkoutExerciseIDs, -1, &statement, nil) == SQLITE_OK {
+            while sqlite3_step(statement) == SQLITE_ROW {
+                let id = Int(sqlite3_column_int(statement, 0));
+                list.append(id);
+            }
+        }
+        statement = nil;
+        
+        for element in list {
+            // CONTINUE HERE
+            let deleteWorkoutSets = "DELETE FROM exercise_set WHERE workout_exercise_id='\(element)'";
+            if sqlite3_prepare_v2(db, deleteWorkoutSets, -1, &statement, nil) == SQLITE_OK {
+                if sqlite3_step(statement) == SQLITE_DONE {
+                    print("Delete data success");
+                }
+            } else {
+                print("Prepartion fail");
+            }
+        }
+        
+        
+        statement = nil;
+        
+        let deleteWorkoutExerciseQuery = "DELETE FROM workout_exercise WHERE workout_id='\(workoutId)'";
+        statement = nil;
+        if sqlite3_prepare_v2(db, deleteWorkoutExerciseQuery, -1, &statement, nil) == SQLITE_OK {
+            if sqlite3_step(statement) == SQLITE_DONE {
+                print("Delete data success");
+            }
+        } else {
+            print("Prepartion fail");
+        }
+        
+        statement = nil;
+        
+        let deleteWorkoutQuery = "DELETE FROM workout WHERE id='\(workoutId)'";
+        statement = nil;
+        if sqlite3_prepare_v2(db, deleteWorkoutQuery, -1, &statement, nil) == SQLITE_OK {
+            if sqlite3_step(statement) == SQLITE_DONE {
+                print("Delete data success");
+            }
+        } else {
+            print("Prepartion fail");
+        }
+    }
 }

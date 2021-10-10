@@ -149,6 +149,7 @@ class WorkoutService {
                 return;
             }
             
+            Repository.shared.deleteWorkout(workoutUid: workoutEntity.uid);
         }.resume();
     }
 }

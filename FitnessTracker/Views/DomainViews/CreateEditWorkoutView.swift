@@ -18,7 +18,7 @@ struct CreateEditWorkoutView: View {
     var body: some View {
         VStack {
             Form {
-                Section(header: Text("Workouts")) {
+                Section(header: Text("Workout Specifics")) {
                     TextField("Workout name", text: $workoutName);
                     
                     HStack {
@@ -51,26 +51,22 @@ struct CreateEditWorkoutView: View {
             Spacer();
             
             if !editMode {
-            Button(action: {
-                let workoutEntity = WorkoutEntity(id: -1, uid: "", name: workoutName, exercises: selectedExercises);
-                // Workout gets inserted in cloud DB, but not workoutExercise and setEntity
-                let defaults = UserDefaults.standard.dictionary(forKey: "tokens")!["accessToken"];
-                WorkoutService().addWorkout(token: defaults as! String, workoutEntity: workoutEntity);
-                showToastNotification = true;
-                self.presentationMode.wrappedValue.dismiss();
-            }, label: {
-                Text("Add workout")
-            })
+                CustomButton(title: "Add Workout", disabled: false, backgroundColor: .black, foregroundColor: .white, action: {
+                    let workoutEntity = WorkoutEntity(id: -1, uid: "", name: workoutName, exercises: selectedExercises);
+                    // Workout gets inserted in cloud DB, but not workoutExercise and setEntity
+                    let defaults = UserDefaults.standard.dictionary(forKey: "tokens")!["accessToken"];
+                    WorkoutService().addWorkout(token: defaults as! String, workoutEntity: workoutEntity);
+                    showToastNotification = true;
+                    self.presentationMode.wrappedValue.dismiss();
+                })
             } else {
-                Button(action: {
+                CustomButton(title: "Update Workout", disabled: false, backgroundColor: .black, foregroundColor: .white, action: {
                     let workoutEntity = WorkoutEntity(id: -1, uid: workoutUid, name: workoutName, exercises: selectedExercises);
                     // Workout gets inserted in cloud DB, but not workoutExercise and setEntity
                     let defaults = UserDefaults.standard.dictionary(forKey: "tokens")!["accessToken"];
                     WorkoutService().updateWorkout(token: defaults as! String, workoutEntity: workoutEntity);
                     showToastNotification = true;
                     self.presentationMode.wrappedValue.dismiss();
-                }, label: {
-                    Text("Update Workout")
                 })
             }
         }

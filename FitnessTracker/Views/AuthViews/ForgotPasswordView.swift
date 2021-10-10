@@ -19,7 +19,7 @@ struct ForgotPasswordView: View {
                 .padding(.bottom);
             
             
-            CustomButton(title: "Reset Password", disabled: false, backgroundColor: Color.blue, foregroundColor: Color.white, action: {
+            CustomButton(title: "Reset Password", disabled: false, backgroundColor: Color.black, foregroundColor: Color.white, action: {
                 forgotPasswordViewModel.forgotPassword();
             }).alert(isPresented: Binding<Bool>(
                 get: { forgotPasswordViewModel.isFinished }, set: {_ in }

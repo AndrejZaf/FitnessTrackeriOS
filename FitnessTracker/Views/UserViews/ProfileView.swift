@@ -14,15 +14,6 @@ struct ProfileView: View {
     let measurementSystems = ["Imperial", "Metric"];
     var body: some View {
         VStack {
-                ZStack {
-                    Rectangle()
-                        .fill(Color.yellow)
-                        .frame(height: 40)
-                    HStack {
-                        Toggle("Theme Select", isOn: $themeToggle)
-                    }.padding(.horizontal);
-                }
-            
             ZStack {
                 Rectangle()
                     .fill(Color.yellow)
@@ -40,15 +31,14 @@ struct ProfileView: View {
                 }
             }
             
-            Button(action: {
+            Spacer();
+            
+            CustomButton(title: "Logout", backgroundColor: .black, foregroundColor: .white, action: {
                 defaults.removeObject(forKey: "tokens");
                 defaults.removeObject(forKey: "loggedIn");
                 Repository.shared.deleteWorkouts();
                 RegulatorService.shared.setAvailableToLoad(false);
-            }, label: {
-                Text("Logout");
             })
-            Spacer();
         }
     }
 }

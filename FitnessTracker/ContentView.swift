@@ -11,25 +11,34 @@ struct ContentView: View {
     let defaults = UserDefaults.standard;
     @AppStorage("loggedIn") var loggedIn: Bool = false;
     @AppStorage("loginAnimation") var loginAnimation: Bool = false;
-    
+    @State var showSplashScreen: Bool = true;
     var body: some View {
         VStack {
             // defaults.value(forKey: "tokens") == nil
-            if loginAnimation {
+            if showSplashScreen {
                 LoadingView();
             } else {
-                if !loggedIn {
-                    LoginView();
-                }
-                else {
-                    MainView().onAppear(perform: {
-                        CronService().cronStart();
-                    });
+                if loginAnimation {
+                    LoadingView();
+                } else {
+                    if !loggedIn {
+                        LoginView();
+                    }
+                    else {
+                        MainView().onAppear(perform: {
+                            CronService().cronStart();
+                        })
+                    }
                 }
             }
-            
         }.onAppear(perform: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                self.showSplashScreen = false;
+            })
             Repository.shared;
+            if loggedIn {
+                JwtService().checkTokenValidity();
+            }
         })
     }
 }

@@ -10,7 +10,6 @@ import Foundation
 class HomeViewModel: ObservableObject {
     var listOfExercises = [ExerciseEntity]();
     var listOfWorkouts = [WorkoutEntity]();
-    let queue = DispatchQueue(label: "queue", attributes: .concurrent);
     
     init() {
         listOfExercises = getExercises();

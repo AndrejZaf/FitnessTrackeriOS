@@ -18,7 +18,7 @@ struct MainView: View {
                 .tabItem { Image(systemName: "heart.text.square") }
             ProfileView()
                 .tabItem { Image(systemName: "person") }
-        }
+        }.accentColor(.black);
     }
 }
 
