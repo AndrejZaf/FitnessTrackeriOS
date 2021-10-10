@@ -33,7 +33,8 @@ struct ExerciseSetsView: View {
                     self.presentationMode.wrappedValue.dismiss();
                 })
             }
-        }.bottomSheet(isPresented: $isSheetShown, height: 400, content: {
+        }
+        .bottomSheet(isPresented: $isSheetShown, height: 400, content: {
             ExerciseSetEditorView(exerciseSets: $exerciseSets, sheetShown: $isSheetShown);
         })
         .toolbar(content: {

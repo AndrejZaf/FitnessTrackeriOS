@@ -8,36 +8,35 @@
 import SwiftUI
 
 struct ProfileView: View {
-    let defaults = UserDefaults.standard;
-    @State private var measurementSelect: String = "Imperial";
-    @State private var themeToggle: Bool = false;
+    @StateObject private var profileViewModel = ProfileViewModel();
     let measurementSystems = ["Imperial", "Metric"];
+    
     var body: some View {
         VStack {
-            ZStack {
-                Rectangle()
-                    .fill(Color.yellow)
-                    .frame(height: 40)
-                HStack {
-                Picker("Select a measurement system", selection: $measurementSelect) {
+            Form {
+                Picker("Select a measurement system", selection: $profileViewModel.selection) {
                     ForEach(measurementSystems, id: \.self) {
                         Text($0)
                     }
-                }
+                }.onChange(of: profileViewModel.selection, perform: { value in
+                    profileViewModel.changeMeasurementSystem(system: profileViewModel.selection)
+                })
                 .pickerStyle(SegmentedPickerStyle())
                 .padding(.bottom, 10)
                 .padding(.top, 10)
                 .padding(.horizontal);
-                }
+                
+                Button(action: {
+                    profileViewModel.sync();
+                }, label: {
+                    Text("Synchronize")
+                })
             }
             
             Spacer();
             
             CustomButton(title: "Logout", backgroundColor: .black, foregroundColor: .white, action: {
-                defaults.removeObject(forKey: "tokens");
-                defaults.removeObject(forKey: "loggedIn");
-                Repository.shared.deleteWorkouts();
-                RegulatorService.shared.setAvailableToLoad(false);
+                profileViewModel.logout();
             })
         }
     }

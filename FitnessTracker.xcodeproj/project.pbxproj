@@ -30,6 +30,10 @@
 		0D43A4432701013A004BBCD0 /* ImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D43A4422701013A004BBCD0 /* ImageUtils.swift */; };
 		0D43A445270104D2004BBCD0 /* MuscleGroupUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D43A444270104D2004BBCD0 /* MuscleGroupUtils.swift */; };
 		0D43A447270111B2004BBCD0 /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D43A446270111B2004BBCD0 /* BadgeView.swift */; };
+		0D499DA02713648000098F94 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D499D9F2713648000098F94 /* UserService.swift */; };
+		0D499DA22713657500098F94 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D499DA12713657500098F94 /* ProfileViewModel.swift */; };
+		0D499DA4271367EE00098F94 /* UpdateMeasurementSystemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D499DA3271367EE00098F94 /* UpdateMeasurementSystemRequest.swift */; };
+		0D499DA7271369F700098F94 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 0D499DA6271369F700098F94 /* Reachability */; };
 		0D4B81D0270C34C2001A0547 /* CreateEditWorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4B81CF270C34C2001A0547 /* CreateEditWorkoutViewModel.swift */; };
 		0D4B81D2270C380F001A0547 /* VerticalExercisesScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4B81D1270C380F001A0547 /* VerticalExercisesScrollView.swift */; };
 		0D4B81D6270C3ADD001A0547 /* ExerciseSecondaryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4B81D5270C3ADD001A0547 /* ExerciseSecondaryRow.swift */; };
@@ -119,6 +123,9 @@
 		0D43A4422701013A004BBCD0 /* ImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtils.swift; sourceTree = "<group>"; };
 		0D43A444270104D2004BBCD0 /* MuscleGroupUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuscleGroupUtils.swift; sourceTree = "<group>"; };
 		0D43A446270111B2004BBCD0 /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
+		0D499D9F2713648000098F94 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		0D499DA12713657500098F94 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		0D499DA3271367EE00098F94 /* UpdateMeasurementSystemRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMeasurementSystemRequest.swift; sourceTree = "<group>"; };
 		0D4B81CF270C34C2001A0547 /* CreateEditWorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEditWorkoutViewModel.swift; sourceTree = "<group>"; };
 		0D4B81D1270C380F001A0547 /* VerticalExercisesScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalExercisesScrollView.swift; sourceTree = "<group>"; };
 		0D4B81D5270C3ADD001A0547 /* ExerciseSecondaryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSecondaryRow.swift; sourceTree = "<group>"; };
@@ -190,6 +197,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D83A2992712FD97005A4946 /* SwiftJWT in Frameworks */,
+				0D499DA7271369F700098F94 /* Reachability in Frameworks */,
 				0D7301C22712528F00688859 /* SwiftCron in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,6 +231,7 @@
 				0D10926D2700A178000A2676 /* HomeViewModel.swift */,
 				0D43A43E2700F160004BBCD0 /* ExercisesViewModel.swift */,
 				0DB2DCD72706596100BF9A29 /* WorkoutViewModel.swift */,
+				0D499DA12713657500098F94 /* ProfileViewModel.swift */,
 			);
 			path = UserViewModels;
 			sourceTree = "<group>";
@@ -352,6 +361,7 @@
 				0D7301B72712113400688859 /* RegulatorService.swift */,
 				0D7301C3271252ED00688859 /* CronService.swift */,
 				0D83A29A2712FDA6005A4946 /* JwtService.swift */,
+				0D499D9F2713648000098F94 /* UserService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -454,6 +464,7 @@
 				0D5325C126FD0BF700CD4B4E /* ExerciseRequest.swift */,
 				0D5B54F72705E20800671232 /* WorkoutsRequest.swift */,
 				0D4FCEF6270CAE69004C13B7 /* CreateWorkoutRequest.swift */,
+				0D499DA3271367EE00098F94 /* UpdateMeasurementSystemRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -508,6 +519,7 @@
 			packageProductDependencies = (
 				0D7301C12712528F00688859 /* SwiftCron */,
 				0D83A2982712FD97005A4946 /* SwiftJWT */,
+				0D499DA6271369F700098F94 /* Reachability */,
 			);
 			productName = FitnessTracker;
 			productReference = 0D87CF9B26E3A5DC00F37269 /* FitnessTracker.app */;
@@ -539,6 +551,7 @@
 			packageReferences = (
 				0D7301C02712528F00688859 /* XCRemoteSwiftPackageReference "SwiftCron" */,
 				0D83A2972712FD97005A4946 /* XCRemoteSwiftPackageReference "Swift-JWT" */,
+				0D499DA5271369F700098F94 /* XCRemoteSwiftPackageReference "Reachability" */,
 			);
 			productRefGroup = 0D87CF9C26E3A5DC00F37269 /* Products */;
 			projectDirPath = "";
@@ -592,6 +605,7 @@
 				0D24547F270E0BB0005BCB39 /* CreateWorkoutResponse.swift in Sources */,
 				0D4B81DA270C639E001A0547 /* SetTypeEnum.swift in Sources */,
 				0D5B54FE27062E0E00671232 /* SetEntity.swift in Sources */,
+				0D499DA22713657500098F94 /* ProfileViewModel.swift in Sources */,
 				0D6C3CE926F7DE8C00DDEFE7 /* CustomTextField.swift in Sources */,
 				0D39BFEB26FBB4440027E5E4 /* Repository.swift in Sources */,
 				0D04B0DF26F92969008578B8 /* HomeView.swift in Sources */,
@@ -632,6 +646,7 @@
 				0D556EED26FA8CA700D57040 /* WorkoutView.swift in Sources */,
 				0DB2DCD42706568C00BF9A29 /* VerticalWorkoutView.swift in Sources */,
 				0D1092762700BCD8000A2676 /* CategoryUtils.swift in Sources */,
+				0D499DA4271367EE00098F94 /* UpdateMeasurementSystemRequest.swift in Sources */,
 				0D43A445270104D2004BBCD0 /* MuscleGroupUtils.swift in Sources */,
 				0D33853D27074C2B00A04C8F /* ViewExtension.swift in Sources */,
 				0D995EFA26F90D1F00BB1658 /* LoginBodyRequest.swift in Sources */,
@@ -647,6 +662,7 @@
 				0D4D7F4A26FBE0120047597F /* QueryConstants.swift in Sources */,
 				0DB2DCD2270655EE00BF9A29 /* WorkoutRow.swift in Sources */,
 				0D3B6F0C26F7E2AE0079270B /* CustomButton.swift in Sources */,
+				0D499DA02713648000098F94 /* UserService.swift in Sources */,
 				0D4B81D2270C380F001A0547 /* VerticalExercisesScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -838,6 +854,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0D499DA5271369F700098F94 /* XCRemoteSwiftPackageReference "Reachability" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
 		0D7301C02712528F00688859 /* XCRemoteSwiftPackageReference "SwiftCron" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rymcol/SwiftCron.git";
@@ -857,6 +881,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0D499DA6271369F700098F94 /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0D499DA5271369F700098F94 /* XCRemoteSwiftPackageReference "Reachability" */;
+			productName = Reachability;
+		};
 		0D7301C12712528F00688859 /* SwiftCron */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0D7301C02712528F00688859 /* XCRemoteSwiftPackageReference "SwiftCron" */;

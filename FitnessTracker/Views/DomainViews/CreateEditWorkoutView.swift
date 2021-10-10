@@ -53,20 +53,24 @@ struct CreateEditWorkoutView: View {
             if !editMode {
                 CustomButton(title: "Add Workout", disabled: false, backgroundColor: .black, foregroundColor: .white, action: {
                     let workoutEntity = WorkoutEntity(id: -1, uid: "", name: workoutName, exercises: selectedExercises);
-                    // Workout gets inserted in cloud DB, but not workoutExercise and setEntity
                     let defaults = UserDefaults.standard.dictionary(forKey: "tokens")!["accessToken"];
                     WorkoutService().addWorkout(token: defaults as! String, workoutEntity: workoutEntity);
-                    showToastNotification = true;
-                    self.presentationMode.wrappedValue.dismiss();
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                        showToastNotification = true;
+                        self.presentationMode.wrappedValue.dismiss();
+                    })
                 })
             } else {
                 CustomButton(title: "Update Workout", disabled: false, backgroundColor: .black, foregroundColor: .white, action: {
                     let workoutEntity = WorkoutEntity(id: -1, uid: workoutUid, name: workoutName, exercises: selectedExercises);
-                    // Workout gets inserted in cloud DB, but not workoutExercise and setEntity
                     let defaults = UserDefaults.standard.dictionary(forKey: "tokens")!["accessToken"];
                     WorkoutService().updateWorkout(token: defaults as! String, workoutEntity: workoutEntity);
                     showToastNotification = true;
-                    self.presentationMode.wrappedValue.dismiss();
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                        showToastNotification = true;
+                        self.presentationMode.wrappedValue.dismiss();
+                    })
                 })
             }
         }
@@ -74,9 +78,3 @@ struct CreateEditWorkoutView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 }
-
-//struct CreateEditWorkoutView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CreateEditWorkoutView()
-//    }
-//}

@@ -64,9 +64,6 @@ class WorkoutService {
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization");
         request.setValue("application/json", forHTTPHeaderField: "Content-Type");
         request.httpBody = try? JSONEncoder().encode(createWorkoutRequest);
-        
-        print(request.httpBody!);
-        
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             
             guard let data = data, error == nil else {
@@ -80,9 +77,6 @@ class WorkoutService {
                 print("Failed retrieving data");
                 return;
             }
-            
-            print(workoutResponse.uid);
-            
             var workoutRequest = WorkoutRequest(name: workoutEntity.name, uid: workoutResponse.uid, exercises: []);
             
             workoutEntity.exercises.forEach({

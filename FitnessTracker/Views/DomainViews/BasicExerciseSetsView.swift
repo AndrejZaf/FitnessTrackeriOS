@@ -31,20 +31,11 @@ struct BasicExerciseSetsView: View {
                     
                 }
             }
-        }.bottomSheet(isPresented: $isSheetShown, height: 400, content: {
+        }
+        .bottomSheet(isPresented: $isSheetShown, height: 400, content: {
             ExerciseSetEditorView(exerciseSets: $exerciseSets, sheetShown: $isSheetShown);
         })
-        .toolbar(content: {
-            if setType == SetType.Add {
-                Button(action: {
-                    isSheetShown.toggle();
-                }, label: {
-                    Image(systemName: "plus");
-                })
-            } else if setType == SetType.Edit {
-                Image(systemName: "slider.horizontal.3")
-            }
-        })
+        .navigationBarHidden(false)
         .navigationBarTitle(exerciseName, displayMode: .inline);
     }
 }

@@ -13,14 +13,25 @@ struct HomeView: View {
     var body: some View {
         NavigationView() {
             VStack {
-                HStack {
-                    Text("Looks like it's a good day to have a solid workout! Don't miss it").lineLimit(3);
-                }.padding(.horizontal)
+                VStack(alignment: .leading) {
+                    Text("Welcome back 👋")
+                        .font(.title3)
+                        .fontWeight(.bold);
+                    Text("Looks like it's a good day to have a solid workout! Don't miss it")
+                        .lineLimit(3);
+                }
+                .padding()
+                .frame(height: 100);
+                
+                
                 Divider()
                     .padding(.horizontal);
                 
                 HStack {
-                    Text("Exercises");
+                    Text("Exercises")
+                        .font(.caption)
+                        .fontWeight(.bold)
+                        .foregroundColor(.gray);
                     Spacer();
                 }
                 .padding(.horizontal)
@@ -31,7 +42,10 @@ struct HomeView: View {
                     .padding(.horizontal);
                 
                 HStack {
-                    Text("Workouts");
+                    Text("Workouts")
+                        .font(.caption)
+                        .fontWeight(.bold)
+                        .foregroundColor(.gray);
                     Spacer();
                 }
                 .padding()
@@ -39,12 +53,15 @@ struct HomeView: View {
                 
                 VerticalWorkoutView(workouts: $homeViewModel.listOfWorkouts, workoutAdded: $workoutChanges)
                     .frame(height: 300);
-            }.onAppear(perform: {
+            }
+            .padding(.top, 50)
+            .onAppear(perform: {
                 Repository.shared.getWorkouts(numberOfWorkouts: 10);
             })
 //            .navigationBarTitle("", displayMode: .inline)
             .navigationBarHidden(true);
-        }.accentColor(.black);
+        }
+        .accentColor(.black);
 //        .navigationBarHidden(true);
 //        .navigationViewStyle(StackNavigationViewStyle());
     }

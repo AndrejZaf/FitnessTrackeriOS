@@ -24,7 +24,7 @@ struct WorkoutExercisesView: View {
             .onDelete(perform: { indexSet in
                 exercises.remove(at: indexSet.first!);
             }).deleteDisabled(!editMode)
-        }
+        }.navigationBarHidden(false);
     }
 }
 
