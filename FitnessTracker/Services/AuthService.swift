@@ -140,6 +140,7 @@ class AuthService {
             
             let tokens = ["accessToken": loginResponse.accessToken, "refreshToken": loginResponse.refreshToken];
             defaults.setValue(["accessToken": tokens["accessToken"]!!, "refreshToken": tokens["refreshToken"]!!], forKey: "tokens");
+            RegulatorService.shared.release();
         }.resume();
         
     }

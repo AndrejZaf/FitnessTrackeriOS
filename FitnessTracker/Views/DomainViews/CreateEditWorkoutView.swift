@@ -14,6 +14,7 @@ struct CreateEditWorkoutView: View {
     @State var workoutUid: String = "";
     @Binding var showToastNotification: Bool;
     @Environment(\.presentationMode) var presentationMode;
+    private let queue = DispatchQueue(label: "createUpdateQueue", attributes: .concurrent);
     var editMode: Bool = false;
     var body: some View {
         VStack {
@@ -54,7 +55,13 @@ struct CreateEditWorkoutView: View {
                 CustomButton(title: "Add Workout", disabled: false, backgroundColor: .black, foregroundColor: .white, action: {
                     let workoutEntity = WorkoutEntity(id: -1, uid: "", name: workoutName, exercises: selectedExercises);
                     let defaults = UserDefaults.standard.dictionary(forKey: "tokens")!["accessToken"];
-                    WorkoutService().addWorkout(token: defaults as! String, workoutEntity: workoutEntity);
+                    self.queue.async {
+                        RegulatorService.shared.acquire();
+                        JwtService().checkTokenValidity();
+                        RegulatorService.shared.acquire();
+                        WorkoutService().addWorkout(token: defaults as! String, workoutEntity: workoutEntity);
+                    }
+                    
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                         showToastNotification = true;
@@ -65,7 +72,12 @@ struct CreateEditWorkoutView: View {
                 CustomButton(title: "Update Workout", disabled: false, backgroundColor: .black, foregroundColor: .white, action: {
                     let workoutEntity = WorkoutEntity(id: -1, uid: workoutUid, name: workoutName, exercises: selectedExercises);
                     let defaults = UserDefaults.standard.dictionary(forKey: "tokens")!["accessToken"];
-                    WorkoutService().updateWorkout(token: defaults as! String, workoutEntity: workoutEntity);
+                    self.queue.async {
+                        RegulatorService.shared.acquire();
+                        JwtService().checkTokenValidity();
+                        RegulatorService.shared.acquire();
+                        WorkoutService().updateWorkout(token: defaults as! String, workoutEntity: workoutEntity);
+                    }
                     showToastNotification = true;
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                         showToastNotification = true;

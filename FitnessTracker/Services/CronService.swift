@@ -17,9 +17,12 @@ struct CronService {
             let tokens = defaults.dictionary(forKey: "tokens");
             let accessToken = tokens!["accessToken"];
             // TODO Determine a correct value for a cron job every 30 minutes?
-            let cron = Cron(frequency: 1800);
+            let cron = Cron(frequency: 30);
             let job = CronJob({
-//                Repository.shared.deleteWorkouts();
+                RegulatorService.shared.acquire();
+                JwtService().checkTokenValidity();
+                RegulatorService.shared.acquire();
+                Repository.shared.deleteWorkouts();
                 WorkoutService().getWorkouts(token: accessToken as! String);
             })
 

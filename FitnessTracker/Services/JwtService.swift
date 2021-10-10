@@ -23,6 +23,8 @@ struct JwtService {
         let expiryDate = Date(milliseconds: tokenMilliseconds as! Int);
         if dateNow > expiryDate {
             AuthService().refreshToken();
+        } else {
+            RegulatorService.shared.release();
         }
     }
 }

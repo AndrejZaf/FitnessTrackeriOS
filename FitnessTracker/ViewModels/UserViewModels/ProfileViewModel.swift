@@ -9,6 +9,7 @@ import Foundation
 
 class ProfileViewModel: ObservableObject {
     @Published var selection: String = "Imperial";
+    private let queue = DispatchQueue(label: "profileQueue", attributes: .concurrent);
     init() {
         
     }
@@ -18,7 +19,12 @@ class ProfileViewModel: ObservableObject {
         let tokens = defaults.dictionary(forKey: "tokens");
         let accessToken = tokens!["accessToken"];
         Repository.shared.deleteWorkouts();
-        WorkoutService().getWorkouts(token: accessToken as! String);
+        self.queue.async {
+            RegulatorService.shared.acquire();
+            JwtService().checkTokenValidity();
+            RegulatorService.shared.acquire();
+            WorkoutService().getWorkouts(token: accessToken as! String);
+        }
     }
     
     func logout() -> Void {

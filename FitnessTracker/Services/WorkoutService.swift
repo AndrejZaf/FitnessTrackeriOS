@@ -91,6 +91,7 @@ class WorkoutService {
             
             Repository.shared.insertWorkouts(workouts: [workoutRequest]);
             WorkoutViewModel().loadInitalList();
+            RegulatorService.shared.release();
         }.resume();
     }
     
@@ -125,6 +126,7 @@ class WorkoutService {
                 return;
             }
             Repository.shared.updateWorkout(workout: workoutEntity)
+            RegulatorService.shared.release();
         }.resume();
     }
     
@@ -144,6 +146,7 @@ class WorkoutService {
             }
             
             Repository.shared.deleteWorkout(workoutUid: workoutEntity.uid);
+            RegulatorService.shared.release();
         }.resume();
     }
 }

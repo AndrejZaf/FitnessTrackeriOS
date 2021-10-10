@@ -12,6 +12,7 @@ struct VerticalWorkoutView: View {
     @State private var showLink = false;
     @State private var selection: Int? = nil;
     @Binding var workoutAdded: Bool;
+    private let queue = DispatchQueue(label: "verticalWorkoutQueue", attributes: .concurrent);
     var body: some View {
         ScrollView{
             ForEach(0..<workouts.indices.count, id: \.self) { index in
@@ -30,7 +31,12 @@ struct VerticalWorkoutView: View {
                         })
                         Button(action: {
                             let defaults = UserDefaults.standard.dictionary(forKey: "tokens")!["accessToken"];
-                            WorkoutService().deleteWorkout(token: defaults as! String, workoutEntity: workouts[index]);
+                            self.queue.async {
+                                RegulatorService.shared.acquire();
+                                JwtService().checkTokenValidity();
+                                RegulatorService.shared.acquire();
+                                WorkoutService().deleteWorkout(token: defaults as! String, workoutEntity: workouts[index]);
+                            }
                             workouts.remove(at: index);
                         }, label: {
                             Text("Delete")
