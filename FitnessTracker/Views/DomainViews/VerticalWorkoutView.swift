@@ -30,12 +30,14 @@ struct VerticalWorkoutView: View {
                             Image(systemName: "slider.horizontal.3")
                         })
                         Button(action: {
+                            selection = index;
+                            let workout = workouts[index];
                             let defaults = UserDefaults.standard.dictionary(forKey: "tokens")!["accessToken"];
                             self.queue.async {
                                 RegulatorService.shared.acquire();
                                 JwtService().checkTokenValidity();
                                 RegulatorService.shared.acquire();
-                                WorkoutService().deleteWorkout(token: defaults as! String, workoutEntity: workouts[index]);
+                                WorkoutService().deleteWorkout(token: defaults as! String, workoutEntity: workout);
                             }
                             workouts.remove(at: index);
                         }, label: {
