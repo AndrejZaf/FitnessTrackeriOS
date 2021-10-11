@@ -10,6 +10,7 @@ import Foundation
 class CreateEditWorkoutViewModel: ObservableObject {
     @Published var listOfExercises = [ExerciseEntity]();
     @Published var selectedExercises = [ExerciseEntity]();
+    
     private var offset = 0;
     private var totalElementsToLoad = 50;
     

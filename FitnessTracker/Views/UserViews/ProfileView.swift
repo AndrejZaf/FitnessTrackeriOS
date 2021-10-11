@@ -38,7 +38,7 @@ struct ProfileView: View {
             CustomButton(title: "Logout", backgroundColor: .black, foregroundColor: .white, action: {
                 profileViewModel.logout();
             })
-        }
+        }.toast(isPresenting: $profileViewModel.showLoading, duration: 2, alert: { AlertToast(displayMode: .hud, type: .loading, title: "Loading") })
     }
 }
 

@@ -12,6 +12,7 @@ struct CreateEditWorkoutView: View {
     @State var workoutName: String = "";
     @State var listSelection: String = "";
     @State var workoutUid: String = "";
+    @State private var showToast: Bool = false;
     @Binding var showToastNotification: Bool;
     @Environment(\.presentationMode) var presentationMode;
     private let queue = DispatchQueue(label: "createUpdateQueue", attributes: .concurrent);
@@ -55,15 +56,16 @@ struct CreateEditWorkoutView: View {
                 CustomButton(title: "Add Workout", disabled: false, backgroundColor: .black, foregroundColor: .white, action: {
                     let workoutEntity = WorkoutEntity(id: -1, uid: "", name: workoutName, exercises: selectedExercises);
                     let defaults = UserDefaults.standard.dictionary(forKey: "tokens")!["accessToken"];
+                    
+                    showToast = true;
                     self.queue.async {
                         RegulatorService.shared.acquire();
                         JwtService().checkTokenValidity();
                         RegulatorService.shared.acquire();
                         WorkoutService().addWorkout(token: defaults as! String, workoutEntity: workoutEntity);
                     }
-                    
-                    
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                        showToast = false;
                         showToastNotification = true;
                         self.presentationMode.wrappedValue.dismiss();
                     })
@@ -72,20 +74,25 @@ struct CreateEditWorkoutView: View {
                 CustomButton(title: "Update Workout", disabled: false, backgroundColor: .black, foregroundColor: .white, action: {
                     let workoutEntity = WorkoutEntity(id: -1, uid: workoutUid, name: workoutName, exercises: selectedExercises);
                     let defaults = UserDefaults.standard.dictionary(forKey: "tokens")!["accessToken"];
+                    
+                    showToast = true;
                     self.queue.async {
                         RegulatorService.shared.acquire();
                         JwtService().checkTokenValidity();
                         RegulatorService.shared.acquire();
                         WorkoutService().updateWorkout(token: defaults as! String, workoutEntity: workoutEntity);
                     }
-                    showToastNotification = true;
+                    
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                        showToast = false;
                         showToastNotification = true;
                         self.presentationMode.wrappedValue.dismiss();
                     })
                 })
             }
-        }
+        }.toast(isPresenting: $showToast, duration: 2, offsetY: 50, alert: {
+            AlertToast(displayMode: .hud, type: .loading, title: "Loading")
+        })
         .navigationBarTitle(workoutName)
         .navigationBarTitleDisplayMode(.inline)
     }
