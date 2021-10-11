@@ -21,7 +21,10 @@ struct SignUpView: View {
     var body: some View {
         VStack {
             Spacer();
-            
+            VStack {
+            if signUpViewModel.incorrectForm {
+                Text("Incorrect Vaues").foregroundColor(.red).fontWeight(.bold);
+            }
             TextField("Email", text: $signUpViewModel.email)
                 .textFieldStyle(CustomTextFieldStyle())
                 .padding(.horizontal);
@@ -68,10 +71,10 @@ struct SignUpView: View {
             Text("Terms of Service")
                 .font(.subheadline)
                 .foregroundColor(.primary);
-            
+            }
             Spacer();
             
-        }
+        }.toast(isPresenting: $signUpViewModel.isLoading, duration: 2, alert: { AlertToast(displayMode: .hud, type: .loading, title: "Loading") })
     }
 }
 

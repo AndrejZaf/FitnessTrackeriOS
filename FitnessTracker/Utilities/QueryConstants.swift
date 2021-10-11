@@ -9,10 +9,6 @@ import Foundation
 
 
 struct QueryConstants {
-//    DROP TABLE IF EXISTS exercise;
-//    DROP TABLE IF EXISTS workout;
-//    DROP TABLE IF EXISTS workout_exercise;
-//    DROP TABLE IF EXISTS exercise_set;
     
     static let exerciseTable = """
             CREATE TABLE IF NOT EXISTS exercise (

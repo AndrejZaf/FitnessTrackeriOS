@@ -96,7 +96,6 @@ class Repository {
         if sqlite3_prepare_v2(db, query, -1, &statement, nil) == SQLITE_OK {
             for exercise in exercises {
                 sqlite3_bind_text(statement, 1, (exercise.uid! as NSString).utf8String, -1, nil);
-//                print(exercise.uid!);
                 sqlite3_bind_text(statement, 2, (exercise.category! as NSString).utf8String, -1, nil);
                 if exercise.exerciseDescription != nil {
                     sqlite3_bind_text(statement, 3, (exercise.exerciseDescription! as NSString).utf8String, -1, nil);
@@ -280,7 +279,6 @@ class Repository {
     }
     
     func insertWorkouts(workouts: WorkoutRequests) -> Void {
-//        deleteWorkouts();
         if getExerciseCount() == 0 {
             return;
         }
@@ -405,7 +403,6 @@ class Repository {
                     
                     
                     for set in exercise.sets! {
-                        // (reps, rest_period, weight, workout_exercise_id)
                         if sqlite3_prepare_v2(db, insertSetQuery, -1, &statement, nil) == SQLITE_OK {
                             sqlite3_bind_int(statement, 1, Int32(set.reps!));
                             sqlite3_bind_int(statement, 2, Int32(set.restPeriod!));
@@ -621,7 +618,6 @@ class Repository {
         statement = nil;
         
         for element in list {
-            // CONTINUE HERE
             let deleteWorkoutSets = "DELETE FROM exercise_set WHERE workout_exercise_id='\(element)'";
             if sqlite3_prepare_v2(db, deleteWorkoutSets, -1, &statement, nil) == SQLITE_OK {
                 if sqlite3_step(statement) == SQLITE_DONE {
@@ -663,7 +659,6 @@ class Repository {
         
         statement = nil;
 
-//        var emptyWorkout: Bool = false;
         sqlite3_exec(db, "BEGIN TRANSACTION", nil, nil, nil);
         if sqlite3_prepare_v2(db, "UPDATE workout SET name='\(workout.name)' WHERE uid='\(workout.uid)'", -1, &statement, nil) == SQLITE_OK {
             if sqlite3_step(statement) == SQLITE_DONE {
@@ -726,7 +721,6 @@ class Repository {
 
 
                     for set in exercise.exerciseSets {
-                        // (reps, rest_period, weight, workout_exercise_id)
                         if sqlite3_prepare_v2(db, insertSetQuery, -1, &statement, nil) == SQLITE_OK {
                             sqlite3_bind_int(statement, 1, Int32(set.reps));
                             sqlite3_bind_int(statement, 2, Int32(set.rest_period));
@@ -769,7 +763,6 @@ class Repository {
         statement = nil;
         
         for element in list {
-            // CONTINUE HERE
             let deleteWorkoutSets = "DELETE FROM exercise_set WHERE workout_exercise_id='\(element)'";
             if sqlite3_prepare_v2(db, deleteWorkoutSets, -1, &statement, nil) == SQLITE_OK {
                 if sqlite3_step(statement) == SQLITE_DONE {

@@ -14,7 +14,6 @@ struct ContentView: View {
     @State var showSplashScreen: Bool = true;
     var body: some View {
         VStack {
-            // defaults.value(forKey: "tokens") == nil
             if showSplashScreen {
                 LoadingView();
             } else {

@@ -46,18 +46,6 @@ struct VerticalExercisesScrollView: View {
                                         Image(systemName: "plus.circle");
                                     }
                                 })
-//                            Button(action: {
-//                                if createorEditWorkoutViewModel.selectedExercises.contains(where: {$0.name == createorEditWorkoutViewModel.listOfExercises[index].name}) {
-//                                    let index = createorEditWorkoutViewModel.selectedExercises.firstIndex(where: {$0.name == createorEditWorkoutViewModel.listOfExercises[index].name});
-//                                    createorEditWorkoutViewModel.selectedExercises.remove(at: index!);
-//                                } else {
-//                                    createorEditWorkoutViewModel.selectedExercises.append(createorEditWorkoutViewModel.listOfExercises[index])
-//                                    exercises.append(createorEditWorkoutViewModel.listOfExercises[index]);
-//                                }
-//                            }, label: {
-//
-//                            })
-                            
                         }
                         .padding(.horizontal)
                     }
@@ -68,9 +56,3 @@ struct VerticalExercisesScrollView: View {
         .navigationBarTitle("", displayMode: .inline)
     }
 }
-
-//struct VerticalExercisesScrollView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        VerticalExercisesScrollView()
-//    }
-//}

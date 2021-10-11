@@ -42,7 +42,7 @@ class CreateEditWorkoutViewModel: ObservableObject {
         offset += totalElementsToLoad;
     }
     
-    // Search for debounce implementation in Swift
+    // TODO: Search for debounce implementation in Swift
     func searchByExerciseNameInitialLoad(exerciseName: String) -> Void{
         listOfExercises = [];
         offset = 0;

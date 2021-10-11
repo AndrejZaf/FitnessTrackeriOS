@@ -23,13 +23,6 @@ struct WorkoutDetailView: View {
                 })
                 .buttonStyle(CustomButtonStyle(backgroundColor: .black, foregroundColor: .white, isDisabled: false))
             }
-            
-            
-//            .toolbar {
-//                NavigationLink(destination: CreateEditWorkoutView(selectedExercises: workout.exercises, workoutName: workout.name,workoutUid: workout.uid, showToastNotification: $workoutAdded, editMode: true), label: {
-//                    Image(systemName: "slider.horizontal.3");
-//                })
-//            }
         }
     }
 }

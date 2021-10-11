@@ -27,9 +27,3 @@ struct WorkoutExercisesView: View {
         }.navigationBarHidden(false);
     }
 }
-
-//struct WorkoutExercisesView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        WorkoutExercisesView()
-//    }
-//}

@@ -12,15 +12,15 @@ class HomeViewModel: ObservableObject {
     var listOfWorkouts = [WorkoutEntity]();
     
     init() {
-        listOfExercises = getExercises();
-        listOfWorkouts = getWorkouts();
+        getExercises();
+        getWorkouts();
     }
     
-    func getExercises() -> [ExerciseEntity] {
-        return Repository.shared.getExercises(5);
+    func getExercises() -> Void {
+        listOfExercises = Repository.shared.getExercises(5);
     }
     
-    func getWorkouts() -> [WorkoutEntity] {
-        return Repository.shared.getWorkouts(numberOfWorkouts: 10);
+    func getWorkouts() -> Void {
+        listOfWorkouts = Repository.shared.getWorkouts(numberOfWorkouts: 10);
     }
 }

@@ -21,9 +21,3 @@ struct WorkoutExerciseRowView: View {
         }
     }
 }
-
-//struct WorkoutExerciseRowView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        WorkoutExerciseRowView()
-//    }
-//}

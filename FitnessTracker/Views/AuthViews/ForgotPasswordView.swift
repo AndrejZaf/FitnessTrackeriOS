@@ -28,8 +28,7 @@ struct ForgotPasswordView: View {
                     self.mode.wrappedValue.dismiss();
                 }));
             }
-        }
-        
+        }.toast(isPresenting: $forgotPasswordViewModel.isLoading, duration: 2, alert: { AlertToast(displayMode: .hud, type: .loading, title: "Loading") })
     }
 }
 

@@ -13,7 +13,8 @@ struct CustomTextFieldStyle: TextFieldStyle {
         configuration
         .padding(15)
         .background(
-            RoundedRectangle(cornerRadius: 10, style: .continuous)
+            // Was corner radius 10
+            RoundedRectangle(cornerRadius: 0, style: .continuous)
                 .stroke(Color.secondary, lineWidth: 1)
         )
     }

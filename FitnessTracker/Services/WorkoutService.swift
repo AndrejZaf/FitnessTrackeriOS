@@ -70,9 +70,6 @@ class WorkoutService {
                 return;
             }
             
-            // TODO: Add data to request body, and expect UID String in return
-            
-            
             guard let workoutResponse = try? JSONDecoder().decode(CreateWorkoutResponse.self, from: data) else {
                 print("Failed retrieving data");
                 return;
@@ -98,7 +95,6 @@ class WorkoutService {
     func updateWorkout(token: String, workoutEntity: WorkoutEntity) -> Void {
         var createWorkoutRequest = CreateWorkoutRequest(name: workoutEntity.name, exercises: []);
         
-        // Move the data to request
         workoutEntity.exercises.forEach({
             let exerciseUid = Repository.shared.getExerciseUidByName(name: $0.name);
             var createExerciseRequest = CreateExerciseRequest(uid: exerciseUid, sets: []);

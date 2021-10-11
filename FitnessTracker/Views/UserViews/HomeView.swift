@@ -14,7 +14,7 @@ struct HomeView: View {
         NavigationView() {
             VStack {
                 VStack(alignment: .leading) {
-                    Text("Welcome back 👋")
+                    Text("Welcome 👋")
                         .font(.title3)
                         .fontWeight(.bold);
                     Text("Looks like it's a good day to have a solid workout! Don't miss it")
@@ -56,14 +56,12 @@ struct HomeView: View {
             }
             .padding(.top, 50)
             .onAppear(perform: {
-                Repository.shared.getWorkouts(numberOfWorkouts: 10);
+                homeViewModel.getWorkouts();
+                
             })
-//            .navigationBarTitle("", displayMode: .inline)
             .navigationBarHidden(true);
         }
         .accentColor(.black);
-//        .navigationBarHidden(true);
-//        .navigationViewStyle(StackNavigationViewStyle());
     }
 }
 

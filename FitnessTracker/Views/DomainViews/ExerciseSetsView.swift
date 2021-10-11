@@ -51,9 +51,3 @@ struct ExerciseSetsView: View {
         .navigationBarTitle(exerciseName, displayMode: .inline);
     }
 }
-
-//struct ExerciseSheetView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ExerciseSetsView()
-//    }
-//}
